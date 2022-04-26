@@ -28,6 +28,10 @@
 		E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */; };
 		E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1B12817FDAF00179E8F /* FirebaseStorage */; };
 		E96CB1B42817FDFA00179E8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E96CB1B32817FDFA00179E8F /* GoogleService-Info.plist */; };
+		E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */; };
+		E9CE7B7428186A98003BFFF7 /* BoulderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */; };
+		E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* LabelPill.swift */; };
+		E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7828187530003BFFF7 /* ColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +53,10 @@
 		E96CB19A2817FCD700179E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E96CB1B32817FDFA00179E8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderDetail.swift; sourceTree = "<group>"; };
+		E9CE7B7628186E68003BFFF7 /* LabelPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPill.swift; sourceTree = "<group>"; };
+		E9CE7B7828187530003BFFF7 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,8 @@
 			children = (
 				E95530392818029C00A876C5 /* RecipeModel.swift */,
 				E955304C281839EB00A876C5 /* CurrentUser.swift */,
+				E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */,
+				E9CE7B7828187530003BFFF7 /* ColorExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				E955304A2818120D00A876C5 /* EntryField.swift */,
+				E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */,
+				E9CE7B7628186E68003BFFF7 /* LabelPill.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -243,7 +255,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E955304B2818120D00A876C5 /* EntryField.swift in Sources */,
+				E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */,
 				E955303D281802C500A876C5 /* SignInView.swift in Sources */,
+				E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */,
 				E95530372818026300A876C5 /* SettingsView.swift in Sources */,
 				E95530412818030900A876C5 /* TabBar.swift in Sources */,
 				E95530332818023400A876C5 /* FavoritesView.swift in Sources */,
@@ -255,6 +269,8 @@
 				E955303A2818029C00A876C5 /* RecipeModel.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
 				E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */,
+				E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */,
+				E9CE7B7428186A98003BFFF7 /* BoulderDetail.swift in Sources */,
 				E955302F281801E500A876C5 /* CategoriesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

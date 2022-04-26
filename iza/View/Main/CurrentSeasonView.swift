@@ -6,19 +6,27 @@
 //
 
 import SwiftUI
-
+import Firebase
 
 struct CurrentSeasonView: View {
+    @EnvironmentObject var firestoreManager: FirestoreManager
+    
     var body: some View {
-            VStack {
-                Text("New Recipe")
+        NavigationView {
+            ScrollView (.vertical, showsIndicators: true) {
+                ForEach(firestoreManager.listOfBoulders, content: { boulder in
+                    BoulderDetail(boulder: boulder)
+                })
             }
-            .navigationTitle("Current season")
+            .padding(.top, 10)
+            .navigationBarHidden(true)
+        }
     }
 }
 
 struct CurrentSeasonViewe_Previews: PreviewProvider {
     static var previews: some View {
         CurrentSeasonView()
+            .environmentObject(FirestoreManager())
     }
 }

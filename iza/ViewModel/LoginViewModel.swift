@@ -12,7 +12,6 @@ import Combine
 
 
 class LoginViewModel: ObservableObject {
-    
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var nickName = ""
@@ -35,6 +34,11 @@ class LoginViewModel: ObservableObject {
     @Published var canSubmitSignUp = false
     @Published var canSubmitSignIn = false
     private var cancellableSet: Set<AnyCancellable> = []
+    
+    let currentYear = "2022"
+    let currentMonth = "April"
+    
+    @State var listOfBoulders = [Boulder]()
     
     var passwordPrompt: String {
         isPasswordCriteriaValid ? "" : "Must be at least 8 characters."
@@ -66,6 +70,7 @@ class LoginViewModel: ObservableObject {
     
     
     let auth = Auth.auth()
+    let db = Firestore.firestore()
     @Published var signedIn: Bool = false
     var isSignedIn: Bool {
         if auth.currentUser != nil {
@@ -144,9 +149,6 @@ class LoginViewModel: ObservableObject {
     
     
     func signIn() {
-        print("Password is")
-        print(email)
-            
         auth.signIn(withEmail: email, password: password) { [weak self] result, error in
                 
             guard result != nil, error == nil else {
@@ -161,6 +163,7 @@ class LoginViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self?.signedIn = true
             }
+            
         }
     }
     

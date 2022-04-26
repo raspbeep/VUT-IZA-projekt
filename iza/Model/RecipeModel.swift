@@ -76,13 +76,13 @@ extension Recipe {
 let allGrades: [String] = ["8a+"]
 
 struct Boulder: Identifiable {
-    let id: ObjectIdentifier
-    let year: Int
+    let id: String
+    let year: String
     let month: String
-    let number: Int
+    let number: String
     let sector: String
     let color: String
     let grade: String
-    let photo: URL
+    let photo: String
     let url: String
 }
