@@ -11,63 +11,50 @@ struct SignUpView: View {
     
     
     let genders = ["male", "female"]
-    let categories = ["profi", "hobby"]
+    let categories = ["hobby", "profi"]
     
     @EnvironmentObject var loginModel: LoginViewModel
 
     var body: some View {
+        ScrollView(.vertical, showsIndicators: true) {
         VStack {
-            
             Spacer()
-            
             VStack (alignment: .leading){
                 
                 Text("Personal Information")
                     .foregroundColor(.secondary)
-                    
-                TextField("Firts name", text: $loginModel.firstName)
-                    .disableAutocorrection(true)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(5.0)
-        
-                TextField("Last Name", text: $loginModel.lastName)
-                    .disableAutocorrection(true)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(5.0)
                 
-                DatePicker(selection: $loginModel.dateOfBirth, in: ...Date(), displayedComponents: .date) {
+                EntryField(sfSymbolName: "person", placeholder: "First name", prompt: loginModel.firstNamePrompt, field: $loginModel.firstName)
+                EntryField(sfSymbolName: "person", placeholder: "Last name", prompt: loginModel.lastNamePrompt, field: $loginModel.lastName)
+                EntryField(sfSymbolName: "person.crop.circle", placeholder: "Nickname", prompt: loginModel.nicknamePrompt, field: $loginModel.nickName)
+                
+                DatePicker(selection: $loginModel.dateOfBirth, displayedComponents: .date) {
                                 Text("Select a date")
+                        .padding(.leading)
                 }
-                .padding()
+                .padding(5)
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(5.0)
             
                 VStack {
                     HStack {
-                        Text("Gender:")
-                        Spacer()
-                        Picker("Gender", selection: $loginModel.gender) {
-                            ForEach(genders, id: \.self) {
-                                Text($0)
-                            }
+                        Picker(selection: $loginModel.gender, label: EmptyView()) {
+                            ForEach(Gender.allCases, id: \.self) {
+                                    Text($0.rawValue)
+                                }
+                                
+                            }.pickerStyle(.segmented)
                         }
-                    }
-                        .padding()
-                        .background(Color(.secondarySystemBackground))
-                        .cornerRadius(5.0)
+                            .background(Color(.secondarySystemBackground))
+                            .cornerRadius(5.0)
                         
                     HStack {
-                        Text("Category:")
-                        Spacer()
-                        Picker("Category", selection: $loginModel.category) {
+                        Picker(selection: $loginModel.category, label: EmptyView()) {
                             ForEach(categories, id: \.self) {
                                 Text($0)
                             }
-                        }
+                        }.pickerStyle(.segmented)
                     }
-                        .padding()
                         .background(Color(.secondarySystemBackground))
                         .cornerRadius(5.0)
                 }
@@ -78,29 +65,13 @@ struct SignUpView: View {
             Spacer()
             
             VStack (alignment: .leading) {
+                
                 Text("Credentials")
                     .foregroundColor(.secondary)
                 
-                TextField("Email", text: $loginModel.email)
-                                .disableAutocorrection(true)
-                                .autocapitalization(.none)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .cornerRadius(5.0)
-
-                SecureField("Password", text: $loginModel.password)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(5.0)
-                
-                SecureField("Repat Password", text: $loginModel.passwordAgain)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(5.0)
+                EntryField(sfSymbolName: "envelope", placeholder: "Email Address", prompt: loginModel.emailPrompt, field: $loginModel.email)
+                EntryField(sfSymbolName: "lock", placeholder: "Password", prompt: loginModel.passwordPrompt, field: $loginModel.password, isSecure: true)
+                EntryField(sfSymbolName: "lock", placeholder: "Repeat password", prompt: loginModel.passwordAgainPrompt, field: $loginModel.passwordAgain, isSecure: true)
             }
             
             Spacer()
@@ -129,8 +100,12 @@ struct SignUpView: View {
             Spacer()
             
         }
-        .padding()
-        .navigationTitle("Create account")
+        
+        .padding(.top, 20)
+        .padding(.leading)
+        .padding(.trailing)
+        .navigationTitle("Sign up")
+        }
     }
 }
     

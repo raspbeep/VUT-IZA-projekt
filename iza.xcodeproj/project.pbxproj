@@ -18,6 +18,7 @@
 		E95530412818030900A876C5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530402818030900A876C5 /* TabBar.swift */; };
 		E95530442818097900A876C5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530432818097900A876C5 /* LoginViewModel.swift */; };
 		E955304B2818120D00A876C5 /* EntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955304A2818120D00A876C5 /* EntryField.swift */; };
+		E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955304C281839EB00A876C5 /* CurrentUser.swift */; };
 		E96CB1972817FCD700179E8F /* izaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB1962817FCD700179E8F /* izaApp.swift */; };
 		E96CB1992817FCD700179E8F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB1982817FCD700179E8F /* ContentView.swift */; };
 		E96CB19B2817FCD700179E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96CB19A2817FCD700179E8F /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		E95530402818030900A876C5 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		E95530432818097900A876C5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E955304A2818120D00A876C5 /* EntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryField.swift; sourceTree = "<group>"; };
+		E955304C281839EB00A876C5 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
 		E96CB1932817FCD700179E8F /* iza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96CB1962817FCD700179E8F /* izaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = izaApp.swift; sourceTree = "<group>"; };
 		E96CB1982817FCD700179E8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				E95530392818029C00A876C5 /* RecipeModel.swift */,
+				E955304C281839EB00A876C5 /* CurrentUser.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				E95530442818097900A876C5 /* LoginViewModel.swift in Sources */,
 				E955303A2818029C00A876C5 /* RecipeModel.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
+				E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */,
 				E955302F281801E500A876C5 /* CategoriesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

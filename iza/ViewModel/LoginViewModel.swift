@@ -12,9 +12,11 @@ import Combine
 
 
 class LoginViewModel: ObservableObject {
+    
     @Published var firstName = ""
     @Published var lastName = ""
-    @Published var gender = "male"
+    @Published var nickName = ""
+    @Published var gender = Gender.male
     @Published var dateOfBirth = Date()
     @Published var category = "hobby"
     @Published var email = ""
@@ -24,22 +26,39 @@ class LoginViewModel: ObservableObject {
     @Published var isEmailCriteriaValid = false
     @Published var isPasswordCriteriaValid = false
     @Published var isPasswordConfirmValid = false
-    @Published var isAgeValid = false
+    
+    @Published var firstNameIsNotEmpty = false
+    @Published var lastNameIsNotEmpty = false
+    @Published var nicknameIsNotEmpty = false
+    
+    @Published var namesAreValid = false
     @Published var canSubmitSignUp = false
     @Published var canSubmitSignIn = false
     private var cancellableSet: Set<AnyCancellable> = []
     
-    var confirmPwPrompt: String {
-            isPasswordConfirmValid ? "" : "Password fields to not match"
-        }
+    var passwordPrompt: String {
+        isPasswordCriteriaValid ? "" : "Must be at least 8 characters."
+    }
+    
+    var passwordAgainPrompt: String {
+        isPasswordConfirmValid ? "" : "Password fields to not match"
+    }
         
-        var emailPrompt: String {
-            isEmailCriteriaValid ? "" : "Enter a valid email address"
-        }
-        
-        var passwordPrompt: String {
-            isPasswordCriteriaValid ? "" : "Must be at least 8 characters."
-        }
+    var emailPrompt: String {
+        isEmailCriteriaValid ? "" : "Enter a valid email address"
+    }
+    
+    var firstNamePrompt: String {
+        firstNameIsNotEmpty ? "" : "First name cannot be empty"
+    }
+    
+    var lastNamePrompt: String {
+        lastNameIsNotEmpty ? "" : "Last name cannot be empty"
+    }
+    
+    var nicknamePrompt: String {
+        nicknameIsNotEmpty ? "" : "Nickname cannot be empty"
+    }
         
 //        var agePrompt: String {
 //            isAgeValid ? "Year of birth" : "Year of birth (must be 21 years old)"
@@ -49,7 +68,11 @@ class LoginViewModel: ObservableObject {
     let auth = Auth.auth()
     @Published var signedIn: Bool = false
     var isSignedIn: Bool {
-        return auth.currentUser != nil
+        if auth.currentUser != nil {
+            return true
+        } else {
+            return false
+        }
     }
     
     let emailPredicate = NSPredicate(format: "SELF MATCHES %@", "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
@@ -69,23 +92,44 @@ class LoginViewModel: ObservableObject {
                 .assign(to: \.isPasswordCriteriaValid, on: self)
                 .store(in: &cancellableSet)
             
-//            $birthYear
-//                .map { birthYear in
-//                    return (Constants.currentYear - birthYear) >= 21
-//                }
-//                .assign(to: \.isAgeValid, on: self)
-//                .store(in: &cancellableSet)
+            $firstName
+                .map { name in
+                    return name.count > 0
+                }
+                .assign(to: \.firstNameIsNotEmpty, on: self)
+                .store(in: &cancellableSet)
+        
+            $lastName
+                .map { name in
+                    return name.count > 0
+                }
+                .assign(to: \.lastNameIsNotEmpty, on: self)
+                .store(in: &cancellableSet)
             
+            $nickName
+                .map { password in
+                    return password.count > 0
+                }
+                .assign(to: \.nicknameIsNotEmpty, on: self)
+                .store(in: &cancellableSet)
+                
             Publishers.CombineLatest($password, $passwordAgain)
                 .map { password, confirmPw in
                     return password == confirmPw
                 }
                 .assign(to: \.isPasswordConfirmValid, on: self)
                 .store(in: &cancellableSet)
+        
+            Publishers.CombineLatest3($firstNameIsNotEmpty, $lastNameIsNotEmpty, $nicknameIsNotEmpty)
+            .map{ firstNameIsNotEmpty, lastNameIsNotEmpty, nicknameIsNotEmpty in
+                return firstNameIsNotEmpty && lastNameIsNotEmpty && nicknameIsNotEmpty
+            }
+            .assign(to: \.namesAreValid, on: self)
+            .store(in: &cancellableSet)
             
-            Publishers.CombineLatest4($isEmailCriteriaValid, $isPasswordCriteriaValid, $isPasswordConfirmValid, $isAgeValid)
-                .map { isEmailCriteriaValid, isPasswordCriteriaValid, isPasswordConfirmValid, isAgeValid in
-                    return (isEmailCriteriaValid && isPasswordCriteriaValid && isPasswordConfirmValid && isAgeValid)
+            Publishers.CombineLatest4($isEmailCriteriaValid, $isPasswordCriteriaValid, $isPasswordConfirmValid, $namesAreValid)
+                .map { isEmailCriteriaValid, isPasswordCriteriaValid, isPasswordConfirmValid, namesAreValid in
+                    return isEmailCriteriaValid && isPasswordCriteriaValid && isPasswordConfirmValid && namesAreValid
                 }
                 .assign(to: \.canSubmitSignUp, on: self)
                 .store(in: &cancellableSet)
@@ -102,20 +146,42 @@ class LoginViewModel: ObservableObject {
     func signIn() {
         print("Password is")
         print(email)
-            auth.signIn(withEmail: email, password: password) { [weak self] result, error in
-                guard result != nil, error == nil else {
-                    print(error!)
-                    return
-                }
-                print("*** **** **** **** ***")
-                print("SIGNED IN")
-                print("*** **** **** **** ***")
-                DispatchQueue.main.async {
-                    self?.signedIn = true
-                }
+            
+        auth.signIn(withEmail: email, password: password) { [weak self] result, error in
+                
+            guard result != nil, error == nil else {
+                print(error!)
+                return
             }
+            
+            print("*** **** **** **** ***")
+            print("SIGNED IN")
+            print("*** **** **** **** ***")
+            
+            DispatchQueue.main.async {
+                self?.signedIn = true
+            }
+        }
     }
+    
+    func createUserData() {
+        guard auth.currentUser != nil else {
+            return
+        }
         
+        let db = Firestore.firestore()
+        let userUID = auth.currentUser?.uid
+    
+        db.collection("users").document("\(userUID!)").setData([
+            "firstName"     : firstName,
+            "lastName"      : lastName,
+            "email"         : email,
+            "dateOfBirth"   : dateOfBirth,
+            "gender"        : gender.rawValue,
+            "category"      : category
+            ])
+    }
+    
     func signUp() {
         auth.createUser(withEmail: email, password: password) { [weak self] result, error in
             guard result != nil, error == nil else {
@@ -127,7 +193,12 @@ class LoginViewModel: ObservableObject {
             print("*** **** **** **** ***")
             DispatchQueue.main.async {
                 self?.signedIn = true
+                self?.createUserData()
             }
+//            DispatchQueue.global(qos: .userInitiated).async {
+            //DispatchQueue.main.async {
+                
+            //}
         }
     }
     

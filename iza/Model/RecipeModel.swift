@@ -20,6 +20,11 @@ enum Category: String {
     case drink = "Drink"
 }
 
+enum Gender: String, CaseIterable {
+    case male = "male"
+    case female = "female"
+}
+
 
 struct Recipe: Identifiable {
     let id = UUID()

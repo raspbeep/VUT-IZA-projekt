@@ -10,7 +10,7 @@ import SwiftUI
 struct EntryField: View {
     var sfSymbolName: String?
     var placeholder: String
-    var prompt: String
+    var prompt: String?
     @Binding var field: String
     var isSecure = false
     var body: some View {
@@ -33,9 +33,13 @@ struct EntryField: View {
             .padding()
             .background(Color(.secondarySystemBackground))
             .cornerRadius(5.0)
-            Text(prompt)
-                .fixedSize(horizontal: false, vertical: true)
-                .font(.caption)
+            
+            if let prompt = prompt {
+                Text(prompt)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
         }
     }
 }

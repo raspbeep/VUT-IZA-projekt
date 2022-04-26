@@ -24,12 +24,9 @@ struct SignInView: View {
                 .padding(.bottom, 30)
                 
                 EntryField(sfSymbolName: "envelope", placeholder: "Email Address", prompt: loginModel.emailPrompt, field: $loginModel.email)
-                    
-                EntryField(sfSymbolName: "lock", placeholder: "Password", prompt: loginModel.passwordPrompt, field: $loginModel.password, isSecure: true)
+                EntryField(sfSymbolName: "lock", placeholder: "Password", field: $loginModel.password, isSecure: true)
             
             Button(action: {
-                
-                // insert combine controls
                 loginModel.signIn()
             }, label: {
                 Text("Sign in")
@@ -46,6 +43,7 @@ struct SignInView: View {
             Spacer()
             NavigationLink("Sign up", destination: SignUpView())
             }
+            .padding()
             .navigationTitle("Sign In")
         }
     }
@@ -53,6 +51,8 @@ struct SignInView: View {
 
 struct SignIn_Previews: PreviewProvider {
     static var previews: some View {
+        let loginModel = LoginViewModel()
         SignInView()
+            .environmentObject(loginModel)
     }
 }
