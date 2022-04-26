@@ -11,6 +11,7 @@ struct SignUpView: View {
     
     
     let genders = ["male", "female"]
+    let categories = ["profi", "hobby"]
     
     @EnvironmentObject var loginModel: LoginViewModel
 
@@ -19,8 +20,10 @@ struct SignUpView: View {
             
             Spacer()
             
-            VStack {
+            VStack (alignment: .leading){
+                
                 Text("Personal Information")
+                    .foregroundColor(.secondary)
                     
                 TextField("Firts name", text: $loginModel.firstName)
                     .disableAutocorrection(true)
@@ -33,33 +36,50 @@ struct SignUpView: View {
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(5.0)
+                
+                DatePicker(selection: $loginModel.dateOfBirth, in: ...Date(), displayedComponents: .date) {
+                                Text("Select a date")
+                }
+                .padding()
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(5.0)
             
-                HStack {
-                    Text("Gender:")
-                    Spacer()
-                    Picker("Gender", selection: $loginModel.gender) {
-                        ForEach(genders, id: \.self) {
-                            Text($0)
+                VStack {
+                    HStack {
+                        Text("Gender:")
+                        Spacer()
+                        Picker("Gender", selection: $loginModel.gender) {
+                            ForEach(genders, id: \.self) {
+                                Text($0)
+                            }
                         }
                     }
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(5.0)
+                        
+                    HStack {
+                        Text("Category:")
+                        Spacer()
+                        Picker("Category", selection: $loginModel.category) {
+                            ForEach(categories, id: \.self) {
+                                Text($0)
+                            }
+                        }
+                    }
+                        .padding()
+                        .background(Color(.secondarySystemBackground))
+                        .cornerRadius(5.0)
                 }
                 
-                .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(5.0)
-            
-                TextField("Age", text: $loginModel.age)
-                .disableAutocorrection(true)
-                .autocapitalization(.none)
-                .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(5.0)
+                    
             }
             
             Spacer()
             
-            VStack {
-                Text("Personal Information")
+            VStack (alignment: .leading) {
+                Text("Credentials")
+                    .foregroundColor(.secondary)
                 
                 TextField("Email", text: $loginModel.email)
                                 .disableAutocorrection(true)
@@ -102,6 +122,8 @@ struct SignUpView: View {
                     .background(Color.blue)
                     .cornerRadius(8.0)
                 }
+                .opacity(loginModel.canSubmitSignUp ? 1 : 0.6)
+                .disabled(!loginModel.canSubmitSignUp)
             }
             
             Spacer()
@@ -116,6 +138,8 @@ struct SignUpView: View {
 
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
+        let loginModel = LoginViewModel()
         SignUpView()
+            .environmentObject(loginModel)
     }
 }

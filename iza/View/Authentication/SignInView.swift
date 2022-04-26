@@ -22,22 +22,10 @@ struct SignInView: View {
                 .clipped()
                 .cornerRadius(150)
                 .padding(.bottom, 30)
-        
-            VStack (alignment: .leading) {
-                TextField("Email", text: $loginModel.email)
-                    .disableAutocorrection(true)
-                    .autocapitalization(.none)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(5.0)
+                
+                EntryField(sfSymbolName: "envelope", placeholder: "Email Address", prompt: loginModel.emailPrompt, field: $loginModel.email)
                     
-                    
-                SecureField("Password", text: $loginModel.password)
-                    .padding()
-                    .background(Color(.secondarySystemBackground))
-                    .cornerRadius(5.0)
-            }
-            .padding()
+                EntryField(sfSymbolName: "lock", placeholder: "Password", prompt: loginModel.passwordPrompt, field: $loginModel.password, isSecure: true)
             
             Button(action: {
                 
@@ -52,6 +40,9 @@ struct SignInView: View {
                     .background(Color.blue)
                     .cornerRadius(8.0)
             })
+            .opacity(loginModel.canSubmitSignIn ? 1 : 0.6)
+            .disabled(!loginModel.canSubmitSignIn)
+            
             Spacer()
             NavigationLink("Sign up", destination: SignUpView())
             }
