@@ -12,7 +12,7 @@ struct SignUpView: View {
     
     let genders = ["male", "female"]
     
-    @EnvironmentObject var loginModel: LoginViewModel
+    @EnvironmentObject var signUpModel: SignUpViewModel
 
     var body: some View {
         VStack {
@@ -22,13 +22,13 @@ struct SignUpView: View {
             VStack {
                 Text("Personal Information")
                     
-                TextField("Firts name", text: $loginModel.firstName)
+                TextField("Firts name", text: $signUpModel.firstName)
                     .disableAutocorrection(true)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(5.0)
         
-                TextField("Last Name", text: $loginModel.lastName)
+                TextField("Last Name", text: $signUpModel.lastName)
                     .disableAutocorrection(true)
                     .padding()
                     .background(Color(.secondarySystemBackground))
@@ -37,7 +37,7 @@ struct SignUpView: View {
                 HStack {
                     Text("Gender:")
                     Spacer()
-                    Picker("Gender", selection: $loginModel.gender) {
+                    Picker("Gender", selection: $signUpModel.gender) {
                         ForEach(genders, id: \.self) {
                             Text($0)
                         }
@@ -48,7 +48,7 @@ struct SignUpView: View {
                 .background(Color(.secondarySystemBackground))
                 .cornerRadius(5.0)
             
-                TextField("Age", text: $loginModel.age)
+                TextField("Age", text: $signUpModel.age)
                 .disableAutocorrection(true)
                 .autocapitalization(.none)
                 .padding()
@@ -61,21 +61,21 @@ struct SignUpView: View {
             VStack {
                 Text("Personal Information")
                 
-                TextField("Email", text: $loginModel.email)
+                TextField("Email", text: $signUpModel.email)
                                 .disableAutocorrection(true)
                                 .autocapitalization(.none)
                                 .padding()
                                 .background(Color(.secondarySystemBackground))
                                 .cornerRadius(5.0)
 
-                SecureField("Password", text: $loginModel.password)
+                SecureField("Password", text: $signUpModel.password)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(5.0)
                 
-                SecureField("Repat Password", text: $loginModel.passwordAgain)
+                SecureField("Repat Password", text: $signUpModel.passwordAgain)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
@@ -88,7 +88,7 @@ struct SignUpView: View {
             VStack {
                 Button(action: {
                     // insert combine controls
-                    loginModel.signUp()
+                    signUpModel.signUp()
                 }){
                     HStack {
                        Spacer()

@@ -11,8 +11,7 @@ import Firebase
 
 struct ContentView: View {
     
-    @EnvironmentObject var loginModel: LoginViewModel
-    
+    @EnvironmentObject var loginModel: SignInViewModel
     
     var body: some View {
         
@@ -33,11 +32,11 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            let loginModel = LoginViewModel()
+            let signInModel = SignInViewModel()
             ContentView()
-                .environmentObject(loginModel)
+                .environmentObject(signInModel)
             ContentView()
-                .environmentObject(loginModel)
+                .environmentObject(signInModel)
                 .colorScheme(.dark)
                 .background(Color.black)
         }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    @EnvironmentObject var loginModel: LoginViewModel
+    @EnvironmentObject var loginModel: SignInViewModel
 
     var body: some View {
         NavigationView {
