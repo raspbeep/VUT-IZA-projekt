@@ -10,12 +10,12 @@ import SwiftUI
 
 struct SettingsView: View {
     
-    @EnvironmentObject var loginViewModel: LoginModel
+    @EnvironmentObject var loginModel: LoginViewModel
     
     var body: some View {
             Form {
                 Button(action: {
-                    loginViewModel.signOut()
+                    loginModel.signOut()
                 }, label: {
                     Text("Logout")
                         .foregroundColor(Color.blue)

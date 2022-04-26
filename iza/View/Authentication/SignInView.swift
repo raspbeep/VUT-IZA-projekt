@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    
-    @State var email = ""
-    @State var password = ""
-    
-    @EnvironmentObject var loginViewModel: LoginModel
+    @EnvironmentObject var loginModel: LoginViewModel
 
     var body: some View {
         NavigationView {
@@ -28,7 +24,7 @@ struct SignInView: View {
                 .padding(.bottom, 30)
         
             VStack (alignment: .leading) {
-                TextField("Email", text: $email)
+                TextField("Email", text: $loginModel.email)
                     .disableAutocorrection(true)
                     .autocapitalization(.none)
                     .padding()
@@ -36,7 +32,7 @@ struct SignInView: View {
                     .cornerRadius(5.0)
                     
                     
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $loginModel.password)
                     .padding()
                     .background(Color(.secondarySystemBackground))
                     .cornerRadius(5.0)
@@ -46,7 +42,7 @@ struct SignInView: View {
             Button(action: {
                 
                 // insert combine controls
-                loginViewModel.signIn(email: email, password: password)
+                loginModel.signIn()
             }, label: {
                 Text("Sign in")
                     .font(.headline)

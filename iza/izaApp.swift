@@ -15,10 +15,10 @@ struct izaApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            let loginModel = LoginModel()
+            let loginViewModel = LoginViewModel()
             
             ContentView()
-                .environmentObject(loginModel)
+                .environmentObject(loginViewModel)
         }
     }
 }

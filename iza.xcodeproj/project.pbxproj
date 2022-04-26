@@ -16,6 +16,7 @@
 		E955303D281802C500A876C5 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955303C281802C500A876C5 /* SignInView.swift */; };
 		E955303F281802CE00A876C5 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955303E281802CE00A876C5 /* SignUpView.swift */; };
 		E95530412818030900A876C5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530402818030900A876C5 /* TabBar.swift */; };
+		E95530442818097900A876C5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530432818097900A876C5 /* LoginViewModel.swift */; };
 		E96CB1972817FCD700179E8F /* izaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB1962817FCD700179E8F /* izaApp.swift */; };
 		E96CB1992817FCD700179E8F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB1982817FCD700179E8F /* ContentView.swift */; };
 		E96CB19B2817FCD700179E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96CB19A2817FCD700179E8F /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		E955303C281802C500A876C5 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		E955303E281802CE00A876C5 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		E95530402818030900A876C5 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		E95530432818097900A876C5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E96CB1932817FCD700179E8F /* iza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96CB1962817FCD700179E8F /* izaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = izaApp.swift; sourceTree = "<group>"; };
 		E96CB1982817FCD700179E8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,13 +62,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E955302B281801B000A876C5 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		E955302C281801C600A876C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +101,14 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
+		E95530422818096D00A876C5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E95530432818097900A876C5 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E96CB18A2817FCD600179E8F = {
 			isa = PBXGroup;
 			children = (
@@ -125,9 +128,9 @@
 		E96CB1952817FCD700179E8F /* iza */ = {
 			isa = PBXGroup;
 			children = (
+				E95530422818096D00A876C5 /* ViewModel */,
 				E95530382818029100A876C5 /* Model */,
 				E955302C281801C600A876C5 /* View */,
-				E955302B281801B000A876C5 /* New Group */,
 				E96CB1B32817FDFA00179E8F /* GoogleService-Info.plist */,
 				E96CB1962817FCD700179E8F /* izaApp.swift */,
 				E96CB1982817FCD700179E8F /* ContentView.swift */,
@@ -233,6 +236,7 @@
 				E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */,
 				E95530352818024B00A876C5 /* HomeView.swift in Sources */,
 				E955303F281802CE00A876C5 /* SignUpView.swift in Sources */,
+				E95530442818097900A876C5 /* LoginViewModel.swift in Sources */,
 				E955303A2818029C00A876C5 /* RecipeModel.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
 				E955302F281801E500A876C5 /* CategoriesView.swift in Sources */,
