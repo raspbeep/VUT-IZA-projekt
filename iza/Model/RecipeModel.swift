@@ -20,10 +20,7 @@ enum Category: String {
     case drink = "Drink"
 }
 
-enum Gender: String, CaseIterable {
-    case male = "male"
-    case female = "female"
-}
+
 
 
 struct Recipe: Identifiable {
@@ -73,16 +70,8 @@ extension Recipe {
     ]
 }
 
-let allGrades: [String] = ["8a+"]
 
-struct Boulder: Identifiable {
-    let id: String
-    let year: String
-    let month: String
-    let number: String
-    let sector: String
-    let color: String
-    let grade: String
-    let photo: String
-    let url: String
-}
+
+
+
+

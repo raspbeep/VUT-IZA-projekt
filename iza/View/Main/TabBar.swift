@@ -7,18 +7,27 @@
 
 import SwiftUI
 
+
+//enum colorClimbed: String {
+//    case "climbed": Color.lightGreenCard
+//    case Color.
+//
+//}
+
 struct TabBar: View {
+    
+    
     var body: some View {
         TabView (selection: .constant(1)){
             NavigationView {
-                HomeView()
-                    .navigationViewStyle(.stack)
+                LeaderboardView()
             }
                 .tabItem {
                     Text("Home")
                     Image(systemName: "chart.bar.fill")
                 }
                 .tag(1)
+                .navigationViewStyle(.stack)
                 
             
             NavigationView {
@@ -32,6 +41,9 @@ struct TabBar: View {
             
             NavigationView {
                 CurrentSeasonView()
+                    .environmentObject(BoulderViewModel(
+                        boulderService: BoulderService(), attemptService: AttemptService()
+                    ))
             }
             
                 .tabItem {

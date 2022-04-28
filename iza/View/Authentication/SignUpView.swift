@@ -78,8 +78,9 @@ struct SignUpView: View {
             
             VStack {
                 Button(action: {
-                    // insert combine controls
-                    loginModel.signUp()
+                    Task {
+                        await loginModel.signUp()
+                    }
                 }){
                     HStack {
                        Spacer()

@@ -12,6 +12,8 @@ import Combine
 
 
 class LoginViewModel: ObservableObject {
+    @Published var errorMessage = ""
+    
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var nickName = ""
@@ -147,25 +149,67 @@ class LoginViewModel: ObservableObject {
             .store(in: &cancellableSet)
         }
     
-    
-    func signIn() {
-        auth.signIn(withEmail: email, password: password) { [weak self] result, error in
-                
-            guard result != nil, error == nil else {
-                print(error!)
-                return
-            }
+    func signIn() async {
+        do {
+            let authDataResult = try await auth.signIn(withEmail: email, password: password)
+            let user = authDataResult.user
             
+            print("Signed in as \(user.uid), with email \(user.email ?? "")")
+            DispatchQueue.main.async {
+                self.signedIn = true
+            }
             print("*** **** **** **** ***")
             print("SIGNED IN")
             print("*** **** **** **** ***")
             
+        } catch {
+            print("There was an error signing in: \(error.localizedDescription.description)")
             DispatchQueue.main.async {
-                self?.signedIn = true
+                self.errorMessage = error.localizedDescription
             }
+        }
+    }
+    
+    func signUp() async {
+        do {
+            let authDataResult = try await auth.createUser(withEmail: email, password: password)
+            let user = authDataResult.user
+        
+            print("Signed up as \(user.uid), with email \(user.email ?? "")")
+            
+            DispatchQueue.main.async {
+                self.signedIn = true
+            }
+            
+            print("*** **** **** **** ***")
+            print("SIGNED UP")
+            print("*** **** **** **** ***")
+        
+        } catch {
+            print("There was an error signing up: \(error.localizedDescription.description)")
+            DispatchQueue.main.async {
+                self.errorMessage = error.localizedDescription
+            }
+        }
+    }
+    
+    func signOut() {
+        do {
+            try? auth.signOut()
+            self.signedIn = false
+            self.password = ""
+            self.passwordAgain = ""
+            self.firstName = ""
+            self.lastName = ""
+            self.nickName = ""
+            
+            print("*** **** **** **** ***")
+            print("SIGNED OUT")
+            print("*** **** **** **** ***")
             
         }
     }
+    
     
     func createUserData() {
         guard auth.currentUser != nil else {
@@ -183,34 +227,5 @@ class LoginViewModel: ObservableObject {
             "gender"        : gender.rawValue,
             "category"      : category
             ])
-    }
-    
-    func signUp() {
-        auth.createUser(withEmail: email, password: password) { [weak self] result, error in
-            guard result != nil, error == nil else {
-                print(error!)
-                return
-            }
-            print("*** **** **** **** ***")
-            print("SIGNED UP")
-            print("*** **** **** **** ***")
-            DispatchQueue.main.async {
-                self?.signedIn = true
-                self?.createUserData()
-            }
-//            DispatchQueue.global(qos: .userInitiated).async {
-            //DispatchQueue.main.async {
-                
-            //}
-        }
-    }
-    
-    func signOut() {
-        try? auth.signOut()
-        self.signedIn = false
-        self.password = ""
-        print("*** **** **** **** ***")
-        print("SIGNED OUT")
-        print("*** **** **** **** ***")
     }
 }

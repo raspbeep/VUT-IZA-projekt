@@ -10,17 +10,58 @@ import Firebase
 
 struct CurrentSeasonView: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
+    @EnvironmentObject var loginModel: LoginViewModel
+    
+    @EnvironmentObject var boulderViewModel: BoulderViewModel
     
     var body: some View {
         NavigationView {
-            ScrollView (.vertical, showsIndicators: true) {
-                ForEach(firestoreManager.listOfBoulders, content: { boulder in
-                    BoulderDetail(boulder: boulder)
-                })
+            
+            switch boulderViewModel.state {
+                case .success(data: let data):
+                    ScrollView (.vertical, showsIndicators: true) {
+                        VStack {
+                            ForEach(data, content: { boulder in
+                                NavigationLink(destination: Text("Hello")) {
+                                    BoulderDetail(boulder: boulder.boulder, attempt: boulder.attempt)
+                                }
+                            })
+
+                        }
+                        
+                    }
+                    
+                    .buttonStyle(PlainButtonStyle())
+                    .navigationTitle("Current season")
+                
+                case .loading:
+                    VStack {
+                        Text("loading")
+                        ProgressView()
+                    }
+                    
+                default:
+                    ProgressView()
             }
-            .padding(.top, 10)
-            .navigationBarHidden(true)
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .padding(.top, 10)
+        .task {
+            await boulderViewModel.getBoulder()
+        }.alert("Error", isPresented: $boulderViewModel.hasError, presenting: boulderViewModel.state) { detail in
+            Button("Retry") {
+                Task {
+                    await boulderViewModel.getBoulder()
+                }
+            }
+        } message: { detail in
+            if case let .failed(error) = detail {
+                Text(error.localizedDescription)
+            }
+        }
+        
+        
     }
 }
 
@@ -30,3 +71,4 @@ struct CurrentSeasonViewe_Previews: PreviewProvider {
             .environmentObject(FirestoreManager())
     }
 }
+

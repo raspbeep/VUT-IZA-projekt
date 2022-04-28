@@ -13,7 +13,6 @@ struct ContentView: View {
     
     @EnvironmentObject var loginModel: LoginViewModel
     
-    
     var body: some View {
         
         VStack {

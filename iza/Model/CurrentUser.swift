@@ -16,5 +16,5 @@ struct User: Identifiable {
     let nickName: String
     let dateOfBirth: Date
     let gender: String
-    let category: Category.RawValue
+    let category: climbingCategory.RawValue
 }

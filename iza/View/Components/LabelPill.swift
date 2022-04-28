@@ -17,7 +17,7 @@ struct CategoryPill: View {
         ZStack {
             Text(categoryName)
                 .font(.system(size: fontSize, weight: .regular))
-                .lineLimit(2)
+                .lineLimit(1)
                 .foregroundColor(.white)
                 .padding(5)
                 .background(Color.orange)

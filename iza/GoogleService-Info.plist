@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1093104927667-gm6pt88b29h2ftka7snr5s37dc72eghf.apps.googleusercontent.com</string>
+	<string>1093104927667-do8ru1lml4rd7j06aqj6s3l9jo0aa0fo.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1093104927667-gm6pt88b29h2ftka7snr5s37dc72eghf</string>
+	<string>com.googleusercontent.apps.1093104927667-do8ru1lml4rd7j06aqj6s3l9jo0aa0fo</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDJreG8oekjOOlzTvA8iZXOq_PLFVxX_G4</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kratochvil.vut-iza</string>
+	<string>com.kratochvil.iza</string>
 	<key>PROJECT_ID</key>
 	<string>ios-app-105f4</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1093104927667:ios:de7eff8f0980ba206a01c6</string>
+	<string>1:1093104927667:ios:ac6a32f9f9368a8e6a01c6</string>
 </dict>
 </plist>

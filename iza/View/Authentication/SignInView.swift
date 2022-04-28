@@ -27,7 +27,10 @@ struct SignInView: View {
                 EntryField(sfSymbolName: "lock", placeholder: "Password", field: $loginModel.password, isSecure: true)
             
             Button(action: {
-                loginModel.signIn()
+                Task {
+                    await loginModel.signIn()
+                }
+                
             }, label: {
                 Text("Sign in")
                     .font(.headline)
