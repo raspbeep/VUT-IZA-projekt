@@ -12,13 +12,14 @@ import Firebase
 struct ContentView: View {
     
     @EnvironmentObject var loginModel: LoginViewModel
+    @State var selection: Int = 1
     
     var body: some View {
         
         VStack {
             if loginModel.signedIn {
                 VStack {
-                    TabBar()
+                    TabBar(selection: $selection)
                 }
             } else {
                 SignInView()

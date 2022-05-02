@@ -15,10 +15,10 @@ import SwiftUI
 //}
 
 struct TabBar: View {
-    
+    @Binding var selection: Int
     
     var body: some View {
-        TabView (selection: .constant(1)){
+        TabView (selection: $selection){
             NavigationView {
                 LeaderboardView()
             }
@@ -41,9 +41,7 @@ struct TabBar: View {
             
             NavigationView {
                 CurrentSeasonView()
-                    .environmentObject(BoulderViewModel(
-                        boulderService: BoulderService(), attemptService: AttemptService()
-                    ))
+                    .environmentObject(BoulderViewModel())
             }
             
                 .tabItem {
@@ -72,11 +70,5 @@ struct TabBar: View {
                 .navigationViewStyle(.stack)
         }
         .accentColor(/*@START_MENU_TOKEN@*/.red/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct TabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        TabBar()
     }
 }

@@ -32,9 +32,7 @@ struct BoulderService {
                 number: doc["number"] as! String,
                 sector: doc["sector"] as! String,
                 color: doc["color"] as! String,
-                grade: doc["grade"] as! String,
-                photo: doc["photo"] as! String,
-                url: doc["url"] as! String
+                grade: doc["grade"] as! String
             )
         }
     }

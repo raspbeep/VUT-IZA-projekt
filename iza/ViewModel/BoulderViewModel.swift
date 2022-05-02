@@ -8,7 +8,7 @@
 import Foundation
 
 
-@MainActor
+//@MainActor
 class BoulderViewModel: ObservableObject {
     
     enum State {
@@ -20,14 +20,11 @@ class BoulderViewModel: ObservableObject {
     
     @Published private(set) var state: State = .na
     @Published var hasError: Bool = false
+    @Published var userID: String = ""
+    @Published var listOfBouldersWithAttempts = [AttemptedBoulder]()
     
-    private let boulderService: BoulderService
-    private let attemptService: AttemptService
-    
-    init(boulderService: BoulderService, attemptService: AttemptService) {
-        self.boulderService = boulderService
-        self.attemptService = attemptService
-    }
+    let boulderService: BoulderService = BoulderService()
+    let attemptService: AttemptService = AttemptService()
     
     
     func getBoulder() async {
@@ -36,24 +33,26 @@ class BoulderViewModel: ObservableObject {
         
         do {
             let boulders = try await boulderService.fetchBoulders()
-            let attempts = try await attemptService.fetchAttempts()
+            let attempts = try await attemptService.fetchAttempts(forUser: userID)
             
-            var listOfBouldersWithAttempts = [AttemptedBoulder]()
-            
-            for boulder in boulders {
-                if let attempt = attempts.first(where: {$0.boulderID == boulder.id}) {
-                    listOfBouldersWithAttempts.append(AttemptedBoulder(id: UUID(), boulder: boulder, attempt: attempt))
-                } else {
-                    let attempt = Attempt(id: UUID().uuidString, boulderID: boulder.id, userID: "e75R3rXwvkaGmDQ3ZZ9WZluWTq62", tries: "0", topped: false)
-                    listOfBouldersWithAttempts.append(AttemptedBoulder(id: UUID(), boulder: boulder, attempt: attempt))
+            DispatchQueue.main.async {
+                self.listOfBouldersWithAttempts = [AttemptedBoulder]()
+                for boulder in boulders {
+                    if let attempt = attempts.first(where: {$0.boulderID == boulder.id}) {
+                        self.listOfBouldersWithAttempts.append(AttemptedBoulder(id: UUID(), boulder: boulder, attempt: attempt))
+                    } else {
+                        let attempt = Attempt(id: UUID().uuidString, boulderID: boulder.id, userID: self.userID, tries: "0", topped: false)
+                        self.listOfBouldersWithAttempts.append(AttemptedBoulder(id: UUID(), boulder: boulder, attempt: attempt))
+                    }
                 }
+                self.state = .success(data: self.listOfBouldersWithAttempts)
             }
             
-            self.state = .success(data: listOfBouldersWithAttempts)
-            
         } catch {
-            self.state = .failed(error: error)
-            self.hasError = true 
+            DispatchQueue.main.async {
+                self.state = .failed(error: error)
+                self.hasError = true
+            }
         }
     }
 }

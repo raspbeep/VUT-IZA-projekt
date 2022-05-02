@@ -36,6 +36,7 @@
 		E96CB1AE2817FDAF00179E8F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AD2817FDAF00179E8F /* FirebaseDatabase */; };
 		E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */; };
 		E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1B12817FDAF00179E8F /* FirebaseStorage */; };
+		E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */; };
 		E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */; };
 		E9CE7B7428186A98003BFFF7 /* BoulderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */; };
 		E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* LabelPill.swift */; };
@@ -68,6 +69,7 @@
 		E96CB1982817FCD700179E8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E96CB19A2817FCD700179E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bouldersheet.swift; sourceTree = "<group>"; };
 		E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderDetail.swift; sourceTree = "<group>"; };
 		E9CE7B7628186E68003BFFF7 /* LabelPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPill.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				E955304A2818120D00A876C5 /* EntryField.swift */,
 				E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */,
 				E9CE7B7628186E68003BFFF7 /* LabelPill.swift */,
+				E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				E955303F281802CE00A876C5 /* SignUpView.swift in Sources */,
 				E95530442818097900A876C5 /* LoginViewModel.swift in Sources */,
 				E91120B9281A916B005FD9EC /* Boulder.swift in Sources */,
+				E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
 				E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */,
 				E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */,

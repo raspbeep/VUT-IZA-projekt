@@ -18,20 +18,20 @@ struct AttemptService {
         case invalidStatusCode
     }
     
-    func fetchAttempts() async throws -> [Attempt] {
+    func fetchAttempts(forUser: String) async throws -> [Attempt] {
         let db = Firestore.firestore()
-            let snapshot = try await db.collection("attempts")
-                        .whereField("userID", isEqualTo: "e75R3rXwvkaGmDQ3ZZ9WZluWTq62")
-                        .getDocuments()
-    
-            return snapshot.documents.map { doc in
-                return Attempt(
-                    id: doc.documentID,
-                    boulderID: doc["boulderID"] as! String,
-                    userID: doc["userID"] as! String,
-                    tries: doc["tries"] as! String,
-                    topped: doc["topped"] as! Bool
-                )
-            }
+        let snapshot = try await db.collection("attempts")
+                    .whereField("userID", isEqualTo: forUser)
+                    .getDocuments()
+
+        return snapshot.documents.map { doc in
+            return Attempt(
+                id: doc.documentID,
+                boulderID: doc["boulderID"] as! String,
+                userID: doc["userID"] as! String,
+                tries: doc["tries"] as! String,
+                topped: doc["topped"] as! Bool
+            )
+        }
     }
 }

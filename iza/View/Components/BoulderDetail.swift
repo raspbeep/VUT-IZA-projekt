@@ -24,7 +24,8 @@ struct BoulderDetail: View {
     var body: some View {
         ZStack(alignment: .leading) {
                 HStack {
-                    HStack{
+                    Spacer()
+                    HStack {
                         VStack (alignment: .trailing) {
                             HStack {
                                 Text("\(boulder.number)/30")
@@ -42,10 +43,10 @@ struct BoulderDetail: View {
                             Spacer()
                         }
                     }
-                    .padding(.horizontal)
                     
-                    VStack(alignment: .leading) {
-                        
+                    Spacer()
+                    
+                    VStack(alignment:.leading) {
                         HStack {
                             (
                             Text("Color: ")
@@ -69,21 +70,40 @@ struct BoulderDetail: View {
                                 CategoryPill(categoryName: category)
                             }
                         }
-                        
                     }
-                    .padding(.horizontal, 5)
+                    
                     
                     Spacer()
                     
                     HStack {
-                        VStack {
-                            Spacer()
-                            Text("Attempts")
-                                .padding(.bottom, 5)
-                            
-                            Text(attempt.tries)
-                                .font(.system(size: 30, weight: .semibold))
-                            Spacer()
+                        if attempt.tries == "1" && attempt.topped == true {
+                            VStack {
+                                Label("Flashed", systemImage: "bolt.fill")
+                            }
+                        } else {
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Text("Attempts:")
+                                        .padding(.bottom, 5)
+                                    
+                                    Text(attempt.tries)
+                                        .font(.system(size: 25, weight: .semibold))
+                                        .padding(.bottom, 5)
+                                    
+                                    Spacer()
+                                }
+                                .padding(.top)
+                                
+                                Spacer()
+                                
+                                Label("", systemImage: "xmark")
+                                    .font(.system(size: 35, weight: .semibold))
+                                    .foregroundColor(Color.red)
+                                
+                                Spacer()
+                            }
                         }
                     }
                     Spacer()
@@ -94,7 +114,7 @@ struct BoulderDetail: View {
         .background(cardColor)
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .padding(.top, 10)
-            .padding([.leading, .trailing], 15)
+            .padding(.leading, 15)
             
         }
 }
@@ -102,22 +122,24 @@ struct BoulderDetail: View {
 struct BoulderDetail_Previews: PreviewProvider {
     static var previews: some View {
         
-        NavigationView {
+        VStack {
             ScrollView (.vertical, showsIndicators: true) {
                 VStack {
-
-                    NavigationLink(destination: Text("Hello")) {
-                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+", photo: "smth", url: "www.google.com"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false))
-                    }
-
-                    NavigationLink(destination: Text("Hello")) {
-                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "7c+", photo: "smth", url: "www.google.com"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "4", topped: true))
-                    }
-
-                    NavigationLink(destination: Text("Hello")) {
-                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+", photo: "smth", url: "www.google.com"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "25", topped: true))
-                    }
-
+                    Button(action: {
+                        
+                    }, label: {
+                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false))
+                    })
+                    Button(action: {
+                        
+                    }, label: {
+                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "7c+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "4", topped: true))
+                    })
+                    Button(action: {
+                        
+                    }, label: {
+                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "1", topped: true))
+                    })
                 //Vstack
                 }
             // ScrollView closure
@@ -126,11 +148,8 @@ struct BoulderDetail_Previews: PreviewProvider {
 
         // NavigationView
         }
-        .navigationTitle("Current season")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("")
+        .navigationBarHidden(true)
         .padding(.top, 10)
-        
-//        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "nose", color: "red", grade: "8a+", photo: "smth", url: "www.google.com"))
-        
     }
 }

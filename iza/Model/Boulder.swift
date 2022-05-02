@@ -17,6 +17,4 @@ struct Boulder: Identifiable {
     var sector: String
     var color: String
     var grade: String
-    var photo: String
-    var url: String
 }
