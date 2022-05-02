@@ -10,7 +10,15 @@ import SwiftUI
 
 struct LeaderboardView: View {
     var body: some View {
-        NavigationView {
+        VStack {
+            
+            HStack {
+                Text("Leaderboard")
+                    .font(.system(size: 30, weight: .bold))
+                    .padding(.horizontal)
+                Spacer()
+            }
+            
             ScrollView {
                 PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
                 
@@ -20,8 +28,10 @@ struct LeaderboardView: View {
                                         
             }
         }
-        .navigationTitle("Leaderboard")
+        .padding(.top, 20)
+        .navigationBarTitle("")
         .navigationBarHidden(true)
+        
     }
 }
 

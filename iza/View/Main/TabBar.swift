@@ -31,10 +31,10 @@ struct TabBar: View {
                 
             
             NavigationView {
-                CategoriesView()
+                SeasonsView()
             }
                 .tabItem {
-                    Label("Categories", systemImage: "square.fill.text.grid.1x2")
+                    Label("Previous", systemImage: "calendar")
                 }
                 .tag(2)
                 .navigationViewStyle(.stack)

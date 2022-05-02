@@ -98,9 +98,16 @@ struct BoulderDetail: View {
                                 
                                 Spacer()
                                 
-                                Label("", systemImage: "xmark")
-                                    .font(.system(size: 35, weight: .semibold))
-                                    .foregroundColor(Color.red)
+                                if attempt.topped == true {
+                                    Label("", systemImage: "checkmark")
+                                        .font(.system(size: 35, weight: .semibold))
+                                        .foregroundColor(Color.red)
+                                    
+                                } else {
+                                    Label("", systemImage: "xmark")
+                                        .font(.system(size: 35, weight: .semibold))
+                                        .foregroundColor(Color.red)
+                                }
                                 
                                 Spacer()
                             }
@@ -114,7 +121,7 @@ struct BoulderDetail: View {
         .background(cardColor)
             .clipShape(RoundedRectangle(cornerRadius: 15))
             .padding(.top, 10)
-            .padding(.leading, 15)
+            .padding([.leading, .trailing], 15)
             
         }
 }

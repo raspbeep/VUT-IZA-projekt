@@ -28,8 +28,6 @@ class FirestoreManager: ObservableObject {
     
     private var currentYear: String
     private var currentMonth: String
-
-    
     
     init () {
         print("init")

@@ -13,6 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var loginModel: LoginViewModel
     
     var body: some View {
+        VStack {
             Form {
                 Button(action: {
                     loginModel.signOut()
@@ -28,7 +29,10 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationTitle("Settings")
+        }
+        .padding(.top, 20)
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
 }
 

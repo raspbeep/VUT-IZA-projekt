@@ -16,14 +16,18 @@ struct CurrentSeasonView: View {
     @State private var showingSheet: Bool = false
     
     var body: some View {
-        //NavigationView {
         VStack {
+            
+            HStack {
+                Text("Current Season")
+                    .font(.system(size: 30, weight: .bold))
+                    .padding(.horizontal)
+                Spacer()
+            }
+            
             switch boulderViewModel.state {
                 case .success(data: let data):
                 VStack (alignment: .leading) {
-                        Text("Current Season")
-                            .padding()
-                            .font(.system(size: 30, weight: .semibold))
                         ScrollView (.vertical, showsIndicators: true) {
                             VStack {
                                 ForEach(data, content: { boulder in
@@ -34,7 +38,7 @@ struct CurrentSeasonView: View {
                                         BoulderDetail(boulder: boulder.boulder, attempt: boulder.attempt)
                                     })
                                         
-                                    .sheet(isPresented: $showingSheet) {BoulderSheet(boulderToShow: boulder, boulderViewModel: boulderViewModel)}
+                                    .sheet(isPresented: $showingSheet) {BoulderSheet(boulderToShow: boulder)}
                                 })
                             }
                         }
@@ -43,12 +47,14 @@ struct CurrentSeasonView: View {
                     }
                 
                 case .loading:
+                    Spacer()
                     VStack {
                         Text("loading")
                         ProgressView()
                     }
                     
                 default:
+                    Spacer()
                     ProgressView()
             }
         }
@@ -69,8 +75,6 @@ struct CurrentSeasonView: View {
                 Text(error.localizedDescription)
             }
         }
-        
-        
     }
 }
 
@@ -81,4 +85,3 @@ struct CurrentSeasonViewe_Previews: PreviewProvider {
             .environmentObject(BoulderViewModel())
     }
 }
-

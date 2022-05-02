@@ -17,7 +17,7 @@
 		E91120C9281ABD84005FD9EC /* BoulderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120C8281ABD84005FD9EC /* BoulderViewModel.swift */; };
 		E91120CB281AC3B1005FD9EC /* AttemptService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120CA281AC3B1005FD9EC /* AttemptService.swift */; };
 		E91120CD281AD2AD005FD9EC /* PersonLeaderboardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */; };
-		E955302F281801E500A876C5 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955302E281801E500A876C5 /* CategoriesView.swift */; };
+		E955302F281801E500A876C5 /* SeasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955302E281801E500A876C5 /* SeasonsView.swift */; };
 		E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9553030281801F800A876C5 /* CurrentSeasonView.swift */; };
 		E95530332818023400A876C5 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530322818023400A876C5 /* FavoritesView.swift */; };
 		E95530352818024B00A876C5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530342818024B00A876C5 /* LeaderboardView.swift */; };
@@ -37,6 +37,8 @@
 		E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */; };
 		E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1B12817FDAF00179E8F /* FirebaseStorage */; };
 		E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */; };
+		E9C4DD26281FD8E50005AC1E /* SeasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD25281FD8E50005AC1E /* SeasonsViewModel.swift */; };
+		E9C4DD28281FD9180005AC1E /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD27281FD9180005AC1E /* Season.swift */; };
 		E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */; };
 		E9CE7B7428186A98003BFFF7 /* BoulderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */; };
 		E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* LabelPill.swift */; };
@@ -53,7 +55,7 @@
 		E91120C8281ABD84005FD9EC /* BoulderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderViewModel.swift; sourceTree = "<group>"; };
 		E91120CA281AC3B1005FD9EC /* AttemptService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptService.swift; sourceTree = "<group>"; };
 		E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLeaderboardDetail.swift; sourceTree = "<group>"; };
-		E955302E281801E500A876C5 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		E955302E281801E500A876C5 /* SeasonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsView.swift; sourceTree = "<group>"; };
 		E9553030281801F800A876C5 /* CurrentSeasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSeasonView.swift; sourceTree = "<group>"; };
 		E95530322818023400A876C5 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		E95530342818024B00A876C5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
@@ -70,6 +72,8 @@
 		E96CB19A2817FCD700179E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bouldersheet.swift; sourceTree = "<group>"; };
+		E9C4DD25281FD8E50005AC1E /* SeasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsViewModel.swift; sourceTree = "<group>"; };
+		E9C4DD27281FD9180005AC1E /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderDetail.swift; sourceTree = "<group>"; };
 		E9CE7B7628186E68003BFFF7 /* LabelPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPill.swift; sourceTree = "<group>"; };
@@ -114,7 +118,7 @@
 		E955302D281801D000A876C5 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				E955302E281801E500A876C5 /* CategoriesView.swift */,
+				E955302E281801E500A876C5 /* SeasonsView.swift */,
 				E9553030281801F800A876C5 /* CurrentSeasonView.swift */,
 				E95530322818023400A876C5 /* FavoritesView.swift */,
 				E95530342818024B00A876C5 /* LeaderboardView.swift */,
@@ -133,6 +137,7 @@
 				E91120BA281A91A8005FD9EC /* AttemptedBoulder.swift */,
 				E91120BC281A91BA005FD9EC /* Attempt.swift */,
 				E91120BE281A91D0005FD9EC /* Enums.swift */,
+				E9C4DD27281FD9180005AC1E /* Season.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 				E95530432818097900A876C5 /* LoginViewModel.swift */,
 				E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */,
 				E91120C8281ABD84005FD9EC /* BoulderViewModel.swift */,
+				E9C4DD25281FD8E50005AC1E /* SeasonsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 				E95530332818023400A876C5 /* FavoritesView.swift in Sources */,
 				E96CB1992817FCD700179E8F /* ContentView.swift in Sources */,
 				E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */,
+				E9C4DD28281FD9180005AC1E /* Season.swift in Sources */,
 				E91120BF281A91D0005FD9EC /* Enums.swift in Sources */,
 				E91120C7281ABCBD005FD9EC /* BoulderService.swift in Sources */,
 				E95530352818024B00A876C5 /* LeaderboardView.swift in Sources */,
@@ -311,10 +318,11 @@
 				E91120B9281A916B005FD9EC /* Boulder.swift in Sources */,
 				E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
+				E9C4DD26281FD8E50005AC1E /* SeasonsViewModel.swift in Sources */,
 				E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */,
 				E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */,
 				E9CE7B7428186A98003BFFF7 /* BoulderDetail.swift in Sources */,
-				E955302F281801E500A876C5 /* CategoriesView.swift in Sources */,
+				E955302F281801E500A876C5 /* SeasonsView.swift in Sources */,
 				E91120CB281AC3B1005FD9EC /* AttemptService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
