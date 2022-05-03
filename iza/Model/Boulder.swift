@@ -6,11 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 
-struct Boulder: Identifiable {
-    var id: String
-    // var reference: DocumentReference?
+struct Boulder: Identifiable, Codable {
+    @DocumentID var id: String?
     var year: String
     var month: String
     var number: String

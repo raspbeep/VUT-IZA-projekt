@@ -8,18 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct BoulderDetail: View {
-    var boulder: Boulder
-    let attempt: Attempt
+struct BoulderView: View {
+    var boulderViewModel: BoulderViewModel
+    var attemptViewModel: AttemptViewModel
     
     let categories = ["crimp", "sloper"]
     
-    private var cardColor: Color {
-        if attempt.topped {
-            return Color.lightGreenCard
-        }
-        return Color.lightRedCard
-    }
+    var cardColor: Color = Color.lightGreenCard
+//    {
+//        if attempt.topped {
+//            return Color.lightGreenCard
+//        }
+//        return Color.lightRedCard
+//    }
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -28,14 +29,14 @@ struct BoulderDetail: View {
                     HStack {
                         VStack (alignment: .trailing) {
                             HStack {
-                                Text("\(boulder.number)/30")
+                                Text("\(boulderViewModel.boulder.number)/30")
                                     .fontWeight(.semibold)
                                     .padding(.bottom, 5)
                             }
                             
                             Spacer()
                             
-                            Text("\(boulder.grade)")
+                            Text("\(boulderViewModel.boulder.grade)")
                                 .font(.system(size: 45, weight: .bold))
                                 .foregroundColor(Color.red)
                                 
@@ -61,7 +62,7 @@ struct BoulderDetail: View {
                         
                         HStack(alignment: .center) {
                             Image(systemName: "mappin")
-                            Text("\(boulder.sector)")
+                            Text("\(boulderViewModel.boulder.sector)")
                         }
                         .padding(.bottom, 5)
                         
@@ -76,7 +77,7 @@ struct BoulderDetail: View {
                     Spacer()
                     
                     HStack {
-                        if attempt.tries == "1" && attempt.topped == true {
+                        if attemptViewModel.attempt.tries == "1" && attemptViewModel.attempt.topped == true {
                             VStack {
                                 Label("Flashed", systemImage: "bolt.fill")
                             }
@@ -84,31 +85,31 @@ struct BoulderDetail: View {
                             VStack {
                                 HStack {
                                     Spacer()
-                                    
+
                                     Text("Attempts:")
                                         .padding(.bottom, 5)
-                                    
-                                    Text(attempt.tries)
+
+                                    Text(attemptViewModel.attempt.tries)
                                         .font(.system(size: 25, weight: .semibold))
                                         .padding(.bottom, 5)
-                                    
+
                                     Spacer()
                                 }
                                 .padding(.top)
-                                
+
                                 Spacer()
-                                
-                                if attempt.topped == true {
+
+                                if attemptViewModel.attempt.topped == true {
                                     Label("", systemImage: "checkmark")
                                         .font(.system(size: 35, weight: .semibold))
                                         .foregroundColor(Color.red)
-                                    
+
                                 } else {
                                     Label("", systemImage: "xmark")
                                         .font(.system(size: 35, weight: .semibold))
                                         .foregroundColor(Color.red)
                                 }
-                                
+
                                 Spacer()
                             }
                         }
@@ -126,37 +127,37 @@ struct BoulderDetail: View {
         }
 }
 
-struct BoulderDetail_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        VStack {
-            ScrollView (.vertical, showsIndicators: true) {
-                VStack {
-                    Button(action: {
-                        
-                    }, label: {
-                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false))
-                    })
-                    Button(action: {
-                        
-                    }, label: {
-                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "7c+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "4", topped: true))
-                    })
-                    Button(action: {
-                        
-                    }, label: {
-                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "1", topped: true))
-                    })
-                //Vstack
-                }
-            // ScrollView closure
-            }
-             .buttonStyle(PlainButtonStyle())
-
-        // NavigationView
-        }
-        .navigationTitle("")
-        .navigationBarHidden(true)
-        .padding(.top, 10)
-    }
-}
+//struct BoulderDetail_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        VStack {
+//            ScrollView (.vertical, showsIndicators: true) {
+//                VStack {
+//                    Button(action: {
+//
+//                    }, label: {
+//                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false))
+//                    })
+//                    Button(action: {
+//
+//                    }, label: {
+//                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "7c+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "4", topped: true))
+//                    })
+//                    Button(action: {
+//
+//                    }, label: {
+//                        BoulderDetail(boulder: Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"), attempt: Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "1", topped: true))
+//                    })
+//                //Vstack
+//                }
+//            // ScrollView closure
+//            }
+//             .buttonStyle(PlainButtonStyle())
+//
+//        // NavigationView
+//        }
+//        .navigationTitle("")
+//        .navigationBarHidden(true)
+//        .padding(.top, 10)
+//    }
+//}

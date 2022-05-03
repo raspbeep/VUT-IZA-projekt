@@ -16,8 +16,6 @@ enum Gender: String, CaseIterable {
     case female = "female"
 }
 
-
-
 enum climbingCategory: String, CaseIterable {
     case profi = "profi"
     case hobby = "hobby"

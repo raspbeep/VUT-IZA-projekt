@@ -9,22 +9,24 @@ import Foundation
 import Combine
 
 
-final class BoulderViewModel: ObservableObject, Identifiable {
+final class AttemptViewModel: ObservableObject, Identifiable {
     var id = ""
     
-    private let boulderRepository = BoulderRepository()
-    @Published var boulder: Boulder
-    
+    private let attemptRepository = AttemptRepository()
+    @Published var attempt: Attempt
     
     private var cancellables: Set<AnyCancellable> = []
     
-    init(boulder: Boulder) {
-        self.boulder = boulder
-        $boulder
+    init(attempt: Attempt) {
+        self.attempt = attempt
+        $attempt
             .compactMap { $0.id }
             .assign(to: \.id, on: self)
             .store(in: &cancellables)
     }
     
-
+    
+    func add(_ attempt: Attempt) {
+        attemptRepository.add(attempt)
+    }
 }

@@ -20,14 +20,11 @@ struct BoulderSheet: View {
     
     init(boulderToShow: AttemptedBoulder) {
         self.boulderToShow = boulderToShow
-        numberOfTries = boulderToShow.attempt.tries
+        numberOfTries = boulderToShow.attempt.attempt.tries
     }
     
     var body: some View {
         VStack {
-            
-            
-            
             
             Spacer()
             
@@ -62,13 +59,13 @@ struct BoulderSheet: View {
         }
     }
 }
-
-struct BoulderSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        BoulderSheet(boulderToShow: AttemptedBoulder(id: UUID(),
-                                          boulder:
-                                             Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"),
-                                          attempt:
-                                             Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false)))
-    }
-}
+//
+//struct BoulderSheet_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BoulderSheet(boulderToShow: AttemptedBoulder(id: UUID(),
+//                                          boulder:
+//                                             Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"),
+//                                          attempt:
+//                                             Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false)))
+//    }
+//}

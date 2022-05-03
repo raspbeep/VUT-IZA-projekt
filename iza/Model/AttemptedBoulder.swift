@@ -8,7 +8,7 @@
 import Foundation
 
 struct AttemptedBoulder: Identifiable {
-    var id: UUID
-    var boulder: Boulder
-    var attempt: Attempt
+    var id: String
+    var boulder: BoulderViewModel
+    var attempt: AttemptViewModel
 }

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Attempt: Identifiable {
-    var id: String
+struct Attempt: Identifiable, Codable {
+    @DocumentID var id: String?
     var boulderID: String
     //var reference: DocumentReference?
     var userID: String
