@@ -18,34 +18,27 @@ class SeasonViewModel: ObservableObject {
         case failed(error: Error)
     }
     
+    var forYear: String;
+    var forMonth: String;
+    
     @Published private(set) var state: State = .na
     @Published var hasError: Bool = false
     @Published var userID: String = ""
     @Published var listOfBouldersWithAttempts = [AttemptedBoulder]()
     
-    let boulderService: BoulderService = BoulderService()
-    let attemptService: AttemptService = AttemptService()
+    let seasonService: SeasonService = SeasonService()
     
     
-    func getBoulder() async {
+    func getSeasons() async {
         self.state = .na
         self.hasError = false
         
         do {
-            let boulders = try await boulderService.fetchBoulders()
-            let attempts = try await attemptService.fetchAttempts(forUser: userID)
+            let seasons = try await seasonService.fetchSeasons()
+            
             
             DispatchQueue.main.async {
-                self.listOfBouldersWithAttempts = [AttemptedBoulder]()
-                for boulder in boulders {
-                    if let attempt = attempts.first(where: {$0.boulderID == boulder.id}) {
-                        self.listOfBouldersWithAttempts.append(AttemptedBoulder(id: UUID(), boulder: boulder, attempt: attempt))
-                    } else {
-                        let attempt = Attempt(id: UUID().uuidString, boulderID: boulder.id, userID: self.userID, tries: "0", topped: false)
-                        self.listOfBouldersWithAttempts.append(AttemptedBoulder(id: UUID(), boulder: boulder, attempt: attempt))
-                    }
-                }
-                self.state = .success(data: self.listOfBouldersWithAttempts)
+                
             }
             
         } catch {

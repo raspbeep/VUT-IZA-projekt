@@ -10,7 +10,7 @@ import Firebase
 
 
 struct AttemptService {
-    //var forUser: String
+    let baseQuery: Query = Firestore.firestore().collection("attempts")
     
     enum AttemptServiceError: Error {
         case failed
@@ -34,4 +34,22 @@ struct AttemptService {
             )
         }
     }
+    
+    func changeQuery(boulderID: String?, userID: String?, grade: String?/*, sortOption: String?*/) -> Query {
+        var filteredQuery = baseQuery
+
+        if let boulderID = boulderID {
+          filteredQuery = filteredQuery.whereField("boulderID", isEqualTo: boulderID)
+        }
+
+        if let userID = userID {
+          filteredQuery = filteredQuery.whereField("userID", isEqualTo: userID)
+        }
+
+        if let grade = grade {
+          filteredQuery = filteredQuery.whereField("grade", isEqualTo: grade)
+        }
+
+        return filteredQuery
+      }
 }

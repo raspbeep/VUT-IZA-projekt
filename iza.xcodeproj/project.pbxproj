@@ -39,6 +39,7 @@
 		E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */; };
 		E9C4DD26281FD8E50005AC1E /* SeasonsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD25281FD8E50005AC1E /* SeasonsViewModel.swift */; };
 		E9C4DD28281FD9180005AC1E /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD27281FD9180005AC1E /* Season.swift */; };
+		E9C4DD2A281FDC9F0005AC1E /* SeasonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD29281FDC9F0005AC1E /* SeasonService.swift */; };
 		E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */; };
 		E9CE7B7428186A98003BFFF7 /* BoulderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */; };
 		E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* LabelPill.swift */; };
@@ -74,6 +75,7 @@
 		E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bouldersheet.swift; sourceTree = "<group>"; };
 		E9C4DD25281FD8E50005AC1E /* SeasonsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsViewModel.swift; sourceTree = "<group>"; };
 		E9C4DD27281FD9180005AC1E /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
+		E9C4DD29281FDC9F0005AC1E /* SeasonService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonService.swift; sourceTree = "<group>"; };
 		E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		E9CE7B7328186A98003BFFF7 /* BoulderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderDetail.swift; sourceTree = "<group>"; };
 		E9CE7B7628186E68003BFFF7 /* LabelPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPill.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				E91120C6281ABCBD005FD9EC /* BoulderService.swift */,
 				E91120CA281AC3B1005FD9EC /* AttemptService.swift */,
+				E9C4DD29281FDC9F0005AC1E /* SeasonService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				E95530442818097900A876C5 /* LoginViewModel.swift in Sources */,
 				E91120B9281A916B005FD9EC /* Boulder.swift in Sources */,
 				E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */,
+				E9C4DD2A281FDC9F0005AC1E /* SeasonService.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
 				E9C4DD26281FD8E50005AC1E /* SeasonsViewModel.swift in Sources */,
 				E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */,
