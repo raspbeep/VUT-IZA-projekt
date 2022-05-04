@@ -40,7 +40,7 @@ struct TabBar: View {
                 .navigationViewStyle(.stack)
             
             NavigationView {
-                BoulderListView(boulderListViewModel: BoulderListViewModel())
+                CurrentSeasonView()
             }
             
                 .tabItem {

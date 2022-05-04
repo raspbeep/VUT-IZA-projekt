@@ -13,7 +13,6 @@
 		E91120BD281A91BA005FD9EC /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120BC281A91BA005FD9EC /* Attempt.swift */; };
 		E91120BF281A91D0005FD9EC /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120BE281A91D0005FD9EC /* Enums.swift */; };
 		E91120C3281A9A0E005FD9EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E91120C2281A9A0E005FD9EC /* GoogleService-Info.plist */; };
-		E91120C9281ABD84005FD9EC /* BoulderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120C8281ABD84005FD9EC /* BoulderViewModel.swift */; };
 		E91120CD281AD2AD005FD9EC /* PersonLeaderboardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */; };
 		E955302F281801E500A876C5 /* SeasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955302E281801E500A876C5 /* SeasonsView.swift */; };
 		E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9553030281801F800A876C5 /* CurrentSeasonView.swift */; };
@@ -25,7 +24,7 @@
 		E95530412818030900A876C5 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530402818030900A876C5 /* TabBar.swift */; };
 		E95530442818097900A876C5 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530432818097900A876C5 /* LoginViewModel.swift */; };
 		E955304B2818120D00A876C5 /* EntryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955304A2818120D00A876C5 /* EntryField.swift */; };
-		E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955304C281839EB00A876C5 /* CurrentUser.swift */; };
+		E955304D281839EB00A876C5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955304C281839EB00A876C5 /* User.swift */; };
 		E96CB1972817FCD700179E8F /* izaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB1962817FCD700179E8F /* izaApp.swift */; };
 		E96CB1992817FCD700179E8F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96CB1982817FCD700179E8F /* ContentView.swift */; };
 		E96CB19B2817FCD700179E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96CB19A2817FCD700179E8F /* Assets.xcassets */; };
@@ -35,16 +34,11 @@
 		E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */; };
 		E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1B12817FDAF00179E8F /* FirebaseStorage */; };
 		E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */; };
-		E9C4DD28281FD9180005AC1E /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD27281FD9180005AC1E /* Season.swift */; };
-		E9C4DD2D28210C7D0005AC1E /* BoulderRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD2C28210C7D0005AC1E /* BoulderRepository.swift */; };
 		E9C4DD3028210E400005AC1E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E9C4DD2F28210E400005AC1E /* FirebaseFirestoreCombine-Community */; };
 		E9C4DD3228210E400005AC1E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E9C4DD3128210E400005AC1E /* FirebaseFirestoreSwift-Beta */; };
-		E9C4DD34282110710005AC1E /* BoulderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD33282110710005AC1E /* BoulderListViewModel.swift */; };
-		E9C4DD36282111C10005AC1E /* BoulderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD35282111C10005AC1E /* BoulderListView.swift */; };
-		E9C4DD38282120AC0005AC1E /* AttemptRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD37282120AC0005AC1E /* AttemptRepository.swift */; };
-		E9C4DD3A282120E20005AC1E /* AttemptViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD39282120E20005AC1E /* AttemptViewModel.swift */; };
-		E9C4DD3C2821249C0005AC1E /* AttemptedBoulderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3B2821249C0005AC1E /* AttemptedBoulderViewModel.swift */; };
-		E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */; };
+		E9C4DD3E282180A20005AC1E /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */; };
+		E9C4DD40282183BF0005AC1E /* Seasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3F282183BF0005AC1E /* Seasons.swift */; };
+		E9C4DD4228227F9B0005AC1E /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD4128227F9B0005AC1E /* UserScore.swift */; };
 		E9CE7B7428186A98003BFFF7 /* BoulderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderView.swift */; };
 		E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* LabelPill.swift */; };
 		E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7828187530003BFFF7 /* ColorExtension.swift */; };
@@ -56,7 +50,6 @@
 		E91120BC281A91BA005FD9EC /* Attempt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attempt.swift; sourceTree = "<group>"; };
 		E91120BE281A91D0005FD9EC /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		E91120C2281A9A0E005FD9EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "iza/GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E91120C8281ABD84005FD9EC /* BoulderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderViewModel.swift; sourceTree = "<group>"; };
 		E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLeaderboardDetail.swift; sourceTree = "<group>"; };
 		E955302E281801E500A876C5 /* SeasonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsView.swift; sourceTree = "<group>"; };
 		E9553030281801F800A876C5 /* CurrentSeasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSeasonView.swift; sourceTree = "<group>"; };
@@ -68,21 +61,16 @@
 		E95530402818030900A876C5 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		E95530432818097900A876C5 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		E955304A2818120D00A876C5 /* EntryField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryField.swift; sourceTree = "<group>"; };
-		E955304C281839EB00A876C5 /* CurrentUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		E955304C281839EB00A876C5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E96CB1932817FCD700179E8F /* iza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E96CB1962817FCD700179E8F /* izaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = izaApp.swift; sourceTree = "<group>"; };
 		E96CB1982817FCD700179E8F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E96CB19A2817FCD700179E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9708EFD281BDBF9001FEF5E /* Bouldersheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bouldersheet.swift; sourceTree = "<group>"; };
-		E9C4DD27281FD9180005AC1E /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
-		E9C4DD2C28210C7D0005AC1E /* BoulderRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderRepository.swift; sourceTree = "<group>"; };
-		E9C4DD33282110710005AC1E /* BoulderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderListViewModel.swift; sourceTree = "<group>"; };
-		E9C4DD35282111C10005AC1E /* BoulderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderListView.swift; sourceTree = "<group>"; };
-		E9C4DD37282120AC0005AC1E /* AttemptRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptRepository.swift; sourceTree = "<group>"; };
-		E9C4DD39282120E20005AC1E /* AttemptViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptViewModel.swift; sourceTree = "<group>"; };
-		E9C4DD3B2821249C0005AC1E /* AttemptedBoulderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttemptedBoulderViewModel.swift; sourceTree = "<group>"; };
-		E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
+		E9C4DD3F282183BF0005AC1E /* Seasons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seasons.swift; sourceTree = "<group>"; };
+		E9C4DD4128227F9B0005AC1E /* UserScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScore.swift; sourceTree = "<group>"; };
 		E9CE7B7328186A98003BFFF7 /* BoulderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderView.swift; sourceTree = "<group>"; };
 		E9CE7B7628186E68003BFFF7 /* LabelPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPill.swift; sourceTree = "<group>"; };
 		E9CE7B7828187530003BFFF7 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -109,7 +97,6 @@
 		E955302C281801C600A876C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E9C4DD35282111C10005AC1E /* BoulderListView.swift */,
 				E9553049281811FE00A876C5 /* Components */,
 				E955303B281802B700A876C5 /* Authentication */,
 				E955302D281801D000A876C5 /* Main */,
@@ -133,13 +120,14 @@
 		E95530382818029100A876C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E955304C281839EB00A876C5 /* CurrentUser.swift */,
+				E955304C281839EB00A876C5 /* User.swift */,
 				E9CE7B7828187530003BFFF7 /* ColorExtension.swift */,
 				E91120B8281A916B005FD9EC /* Boulder.swift */,
 				E91120BA281A91A8005FD9EC /* AttemptedBoulder.swift */,
 				E91120BC281A91BA005FD9EC /* Attempt.swift */,
 				E91120BE281A91D0005FD9EC /* Enums.swift */,
-				E9C4DD27281FD9180005AC1E /* Season.swift */,
+				E9C4DD3F282183BF0005AC1E /* Seasons.swift */,
+				E9C4DD4128227F9B0005AC1E /* UserScore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,11 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				E95530432818097900A876C5 /* LoginViewModel.swift */,
-				E9CE7B712818682B003BFFF7 /* FirestoreManager.swift */,
-				E91120C8281ABD84005FD9EC /* BoulderViewModel.swift */,
-				E9C4DD33282110710005AC1E /* BoulderListViewModel.swift */,
-				E9C4DD39282120E20005AC1E /* AttemptViewModel.swift */,
-				E9C4DD3B2821249C0005AC1E /* AttemptedBoulderViewModel.swift */,
+				E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -198,7 +182,6 @@
 		E96CB1952817FCD700179E8F /* iza */ = {
 			isa = PBXGroup;
 			children = (
-				E9C4DD2B28210C6E0005AC1E /* Repository */,
 				E95530422818096D00A876C5 /* ViewModel */,
 				E95530382818029100A876C5 /* Model */,
 				E955302C281801C600A876C5 /* View */,
@@ -216,15 +199,6 @@
 				E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		E9C4DD2B28210C6E0005AC1E /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				E9C4DD2C28210C7D0005AC1E /* BoulderRepository.swift */,
-				E9C4DD37282120AC0005AC1E /* AttemptRepository.swift */,
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,31 +289,25 @@
 				E91120BD281A91BA005FD9EC /* Attempt.swift in Sources */,
 				E91120CD281AD2AD005FD9EC /* PersonLeaderboardDetail.swift in Sources */,
 				E955304B2818120D00A876C5 /* EntryField.swift in Sources */,
-				E9CE7B722818682B003BFFF7 /* FirestoreManager.swift in Sources */,
-				E9C4DD3A282120E20005AC1E /* AttemptViewModel.swift in Sources */,
 				E955303D281802C500A876C5 /* SignInView.swift in Sources */,
-				E9C4DD3C2821249C0005AC1E /* AttemptedBoulderViewModel.swift in Sources */,
-				E9C4DD2D28210C7D0005AC1E /* BoulderRepository.swift in Sources */,
 				E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */,
 				E95530372818026300A876C5 /* SettingsView.swift in Sources */,
-				E91120C9281ABD84005FD9EC /* BoulderViewModel.swift in Sources */,
-				E9C4DD34282110710005AC1E /* BoulderListViewModel.swift in Sources */,
-				E9C4DD38282120AC0005AC1E /* AttemptRepository.swift in Sources */,
 				E95530412818030900A876C5 /* TabBar.swift in Sources */,
 				E95530332818023400A876C5 /* FavoritesView.swift in Sources */,
 				E96CB1992817FCD700179E8F /* ContentView.swift in Sources */,
+				E9C4DD4228227F9B0005AC1E /* UserScore.swift in Sources */,
 				E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */,
-				E9C4DD28281FD9180005AC1E /* Season.swift in Sources */,
-				E9C4DD36282111C10005AC1E /* BoulderListView.swift in Sources */,
 				E91120BF281A91D0005FD9EC /* Enums.swift in Sources */,
 				E95530352818024B00A876C5 /* LeaderboardView.swift in Sources */,
+				E9C4DD3E282180A20005AC1E /* FirestoreManager.swift in Sources */,
 				E91120BB281A91A8005FD9EC /* AttemptedBoulder.swift in Sources */,
 				E955303F281802CE00A876C5 /* SignUpView.swift in Sources */,
 				E95530442818097900A876C5 /* LoginViewModel.swift in Sources */,
 				E91120B9281A916B005FD9EC /* Boulder.swift in Sources */,
 				E9708EFE281BDBF9001FEF5E /* Bouldersheet.swift in Sources */,
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
-				E955304D281839EB00A876C5 /* CurrentUser.swift in Sources */,
+				E955304D281839EB00A876C5 /* User.swift in Sources */,
+				E9C4DD40282183BF0005AC1E /* Seasons.swift in Sources */,
 				E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */,
 				E9CE7B7428186A98003BFFF7 /* BoulderView.swift in Sources */,
 				E955302F281801E500A876C5 /* SeasonsView.swift in Sources */,

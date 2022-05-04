@@ -11,7 +11,6 @@ import FirebaseFirestoreSwift
 struct Attempt: Identifiable, Codable {
     @DocumentID var id: String?
     var boulderID: String
-    //var reference: DocumentReference?
     var userID: String
     var tries: String
     var topped: Bool

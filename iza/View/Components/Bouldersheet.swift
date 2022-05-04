@@ -11,25 +11,90 @@ import Combine
 
 
 struct BoulderSheet: View {
-    
-    var boulderToShow: AttemptedBoulder
-    //@ObservedObject var boulderViewModel: BoulderViewModel
+    @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
+    @Binding var attemptedBoulder: AttemptedBoulder
+    @State var boulderHasChanged: Bool
     @Environment(\.dismiss) var dismiss
-    
-    var numberOfTries: String
-    
-    init(boulderToShow: AttemptedBoulder) {
-        self.boulderToShow = boulderToShow
-        numberOfTries = boulderToShow.attempt.attempt.tries
-    }
     
     var body: some View {
         VStack {
+            VStack {
+                VStack {
+                    Text(boulderHasChanged.description)
+                    Text(attemptedBoulder.boulder.year)
+                    Text(attemptedBoulder.boulder.month)
+                    Text(attemptedBoulder.boulder.number)
+                        .fontWeight(.semibold)
+                    
+                    Text(attemptedBoulder.boulder.sector)
+                    Text(attemptedBoulder.boulder.color)
+                    Text(attemptedBoulder.boulder.grade)
+                    Text(attemptedBoulder.boulder.label)
+                    
+                    Text(attemptedBoulder.attempt.topped.description)
+                    Text(attemptedBoulder.attempt.tries)
+                }
+                
+                HStack {
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        self.boulderHasChanged = true
+                        if self.attemptedBoulder.attempt.tries != "0" {
+                            self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! - 1)
+                        }
+                        
+                        }) {
+                        Image(systemName: "minus")
+                            .frame(width: 100, height: 100)
+                            .foregroundColor(Color.black)
+                            .background(Color.lightGreenCard)
+                            .clipShape(Circle())
+                    }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        self.boulderHasChanged = true
+                        self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! + 1)
+                        }) {
+                        Image(systemName: "plus")
+                            .frame(width: 100, height: 100)
+                            .foregroundColor(Color.lightRedCard)
+                            .background(Color.red)
+                            .clipShape(Circle())
+                    }
+                    Spacer()
+                }
+                
+                
+                VStack {
+                   Text("Topped")
+                       .foregroundColor(attemptedBoulder.attempt.topped ? .green : .gray)
+                   Toggle("boulder", isOn: $attemptedBoulder.attempt.topped)
+                       .labelsHidden()
+                    }.padding()
+                     .overlay(
+            
+                        RoundedRectangle(cornerRadius: 15)
+                       .stroke(lineWidth: 2)
+                       .foregroundColor(attemptedBoulder.attempt.topped ? .green : .gray)
+                    )
+            }
             
             Spacer()
             
             Button(action: {
                 dismiss()
+                Task {
+                    if self.boulderHasChanged {
+                        try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
+                        self.attemptedBoulder.setFromCopy(copyFrom: attemptedBoulder)
+                        
+                        
+                    }
+                }
             }, label: {
                 Text("Save")
                     .font(.headline)
@@ -39,33 +104,34 @@ struct BoulderSheet: View {
                     .background(Color.blue)
                     .cornerRadius(8.0)
             })
-            
-            
-                
-//                guard var attemptToChange = boulderViewModel.listOfBouldersWithAttempts.first(where: {$0.attempt.boulderID == boulderToShow.boulder.id}) else { return }
-//                DispatchQueue.main.async {
-//                    boulderViewModel.listOfBouldersWithAttempts = boulderViewModel.listOfBouldersWithAttempts
-//                        .map { attemptedBoulder -> AttemptedBoulder in
-//                            if attemptedBoulder.attempt.boulderID == boulderToShow.boulder.id {
-//                                var incremented = attemptedBoulder
-//                                incremented.attempt.tries = String(Int(attemptedBoulder.attempt.tries)! + 1)
-//                                return incremented
-//                            }
-//                            return attemptedBoulder
-//                        }
-//                }
-                
-            
+
+            Spacer()
         }
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarItems(
+//            leading:
+//                Button(action : { dismiss() }){
+//                    Text("Cancel")
+//                },
+//            trailing:
+//
+//                Button(action : {
+//                    dismiss()
+//                    Task {
+//                        if self.boulderHasChanged {
+//                            try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
+//
+//                        }
+//                    }
+//                }){
+//                    Text("Save")
+//
+//                })
+            
+        
     }
 }
-//
-//struct BoulderSheet_Previews: PreviewProvider {
-//    static var previews: some View {
-//        BoulderSheet(boulderToShow: AttemptedBoulder(id: UUID(),
-//                                          boulder:
-//                                             Boulder(id: "15616", year: "2022", month: "January", number: "15", sector: "Nose", color: "red", grade: "8a+"),
-//                                          attempt:
-//                                             Attempt(id: "smth", boulderID: "smth", userID: "smth", tries: "2", topped: false)))
-//    }
-//}
+
+
+
+

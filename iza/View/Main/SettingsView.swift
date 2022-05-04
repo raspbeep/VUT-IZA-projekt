@@ -15,6 +15,11 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             Form {
+                Section(header: Text("PROFILE")) {
+                    HStack {
+                        Text(loginModel.auth.currentUser?.uid ?? "")
+                    }
+                }
                 Button(action: {
                     loginModel.signOut()
                 }, label: {

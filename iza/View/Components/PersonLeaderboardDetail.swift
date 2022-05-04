@@ -13,20 +13,6 @@ struct PersonLeaderboardDetail: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
     var person: User
     
-    
-//    struct User: Identifiable {
-//        let id: String
-//        let email: String
-//        let firstName: String
-//        let lastName: String
-//        let nickName: String
-//        let dateOfBirth: Date
-//        let gender: String
-//        let category: climbingCategory.RawValue
-//    }
-    
-    
-    
     var body: some View {
         ZStack(alignment: .leading) {
                     Color.secondary

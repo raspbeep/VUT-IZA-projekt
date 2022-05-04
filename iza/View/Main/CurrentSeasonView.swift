@@ -1,87 +1,90 @@
-////
-////  NewRecipeView.swift
-////  TrainingDiary
-////
-////  Created by Pavel Kratochvil on 19.04.2022.
-////
 //
-//import SwiftUI
-//import Firebase
+//  NewRecipeView.swift
+//  TrainingDiary
 //
-//struct CurrentSeasonView: View {
-//    @EnvironmentObject var firestoreManager: FirestoreManager
-//    @EnvironmentObject var loginModel: LoginViewModel
-//    @EnvironmentObject var boulderViewModel: BoulderViewModel
-//    
-//    @State private var showingSheet: Bool = false
-//    
-//    var body: some View {
-//        VStack {
-//            
-//            HStack {
-//                Text("Current Season")
-//                    .font(.system(size: 30, weight: .bold))
-//                    .padding(.horizontal)
-//                Spacer()
-//            }
-//            
-//            switch boulderViewModel.state {
-//                case .success(data: let data):
-//                VStack (alignment: .leading) {
-//                        ScrollView (.vertical, showsIndicators: true) {
-//                            VStack {
-//                                ForEach(data, content: { boulder in
-//                                    
-//                                    Button(action: {
-//                                        showingSheet.toggle()
-//                                    }, label: {
-//                                        BoulderView(boulder: boulder.boulder, attempt: boulder.attempt)
-//                                    })
-//                                        
-//                                    .sheet(isPresented: $showingSheet) {BoulderSheet(boulderToShow: boulder)}
-//                                })
-//                            }
-//                        }
-//                        .buttonStyle(PlainButtonStyle())
-//                        .navigationTitle("Current season")
-//                    }
-//                
-//                case .loading:
-//                    Spacer()
-//                    VStack {
-//                        Text("loading")
-//                        ProgressView()
-//                    }
-//                    
-//                default:
-//                    Spacer()
-//                    ProgressView()
-//            }
-//        }
-//        .navigationTitle("")
-//        .navigationBarHidden(true)
-//        .padding(.top, 10)
-//        .task {
-//            boulderViewModel.userID = loginModel.auth.currentUser?.uid ?? ""
-//            await boulderViewModel.getBoulder()
-//        }.alert("Error", isPresented: $boulderViewModel.hasError, presenting: boulderViewModel.state) { detail in
-//            Button("Retry") {
-//                Task {
-//                    await boulderViewModel.getBoulder()
-//                }
-//            }
-//        } message: { detail in
-//            if case let .failed(error) = detail {
-//                Text(error.localizedDescription)
-//            }
-//        }
-//    }
-//}
+//  Created by Pavel Kratochvil on 19.04.2022.
 //
-//struct CurrentSeasonViewe_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CurrentSeasonView()
-//            .environmentObject(FirestoreManager())
-//            .environmentObject(BoulderViewModel())
-//    }
-//}
+
+import SwiftUI
+import Firebase
+
+struct CurrentSeasonView: View {
+    @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
+    @EnvironmentObject var loginModel: LoginViewModel
+    private let currentYear = "2022"
+    private let currentMonth = "April"
+    @State private var showingDetail: Bool = true
+    
+    var body: some View {
+        VStack {
+            if showingDetail {
+                
+            } else {
+                HStack {
+                    Text("Current Season")
+                        .font(.system(size: 30, weight: .bold))
+                        .padding(.horizontal)
+                    Spacer()
+                }
+            }
+            
+            
+            Button(action: {
+                Task {
+                    await firestoreManager.getSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid)
+                    print(firestoreManager.attemptedBoulders)
+                }
+            }) {
+                Text("load")
+            }
+            
+            VStack (alignment: .leading) {
+                        NavigationView {
+                            List {
+                                ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
+                                    ZStack {
+                                        NavigationLink(destination: BoulderSheet(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
+                                            EmptyView()
+                                        }
+                                        .onTapGesture {
+                                            showingDetail = true
+                                        }
+                                        
+                                        .padding(0)
+                                        .opacity(0.0)
+                                        .buttonStyle(PlainButtonStyle())
+                                            
+                                        HStack {
+                                            BoulderView(attemptedBoulder: $attemptedBoulder)
+                                        }
+                                    }
+                                }
+                            }
+                            .navigationBarTitle("")
+                            .navigationBarHidden(true)
+                            .navigationBarBackButtonHidden(true)
+                            .listStyle(PlainListStyle())
+                    }
+            }
+        }
+        .navigationTitle("")
+        .navigationBarHidden(true)
+        .padding(.top, 10)
+        .onAppear {
+            UITableView.appearance().separatorColor = .clear
+                
+            Task {
+                
+                await firestoreManager.getSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid)
+                print(firestoreManager.attemptedBoulders)
+            }
+        }
+        
+    }
+}
+
+struct CurrentSeasonViewe_Previews: PreviewProvider {
+    static var previews: some View {
+        CurrentSeasonView()
+    }
+}

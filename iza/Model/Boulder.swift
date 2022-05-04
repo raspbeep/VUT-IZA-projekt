@@ -8,7 +8,6 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-
 struct Boulder: Identifiable, Codable {
     @DocumentID var id: String?
     var year: String
@@ -17,4 +16,5 @@ struct Boulder: Identifiable, Codable {
     var sector: String
     var color: String
     var grade: String
+    var label: String
 }

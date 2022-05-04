@@ -8,15 +8,14 @@
 import SwiftUI
 
 
-struct CategoryPill: View {
+struct SmallLabel: View {
     
-    var categoryName: String
-    var fontSize: CGFloat = 12.0
+    var text: String
     
     var body: some View {
         ZStack {
-            Text(categoryName)
-                .font(.system(size: fontSize, weight: .regular))
+            Text(text)
+                .font(.system(size: 12.0, weight: .regular))
                 .lineLimit(1)
                 .foregroundColor(.white)
                 .padding(5)
