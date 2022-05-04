@@ -10,11 +10,12 @@ import FirebaseFirestoreSwift
 
 struct User: Identifiable, Codable {
     @DocumentID var id: String?
-    let email: String
-    let firstName: String
-    let lastName: String
-    let nickName: String
-    let dateOfBirth: Date
-    let gender: String
-    let category: climbingCategory.RawValue
+    var uid: String
+    var email: String
+    var firstName: String
+    var lastName: String
+    var nickName: String
+    var dateOfBirth: String
+    var gender: String
+    var category: String
 }

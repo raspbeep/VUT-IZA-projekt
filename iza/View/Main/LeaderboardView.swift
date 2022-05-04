@@ -9,32 +9,39 @@ import SwiftUI
 
 
 struct LeaderboardView: View {
+    @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
+    @EnvironmentObject var loginModel: LoginViewModel
+    private let currentYear = "2022"
+    private let currentMonth = "April"
+    @State private var showingDetail: Bool = true
+    
+    
     var body: some View {
         VStack {
-            
-            HStack {
-                Text("Leaderboard")
-                    .font(.system(size: 30, weight: .bold))
-                    .padding(.horizontal)
-                Spacer()
+            Button(action: {
+                Task {
+                    let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                    print(firestoreManager.leaderboard)
+                }
+            }) {
+                Text("load")
             }
-            
-            ScrollView {
-                PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
-                
-                PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
-                
-                PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
-                                        
+            VStack {
+                List {
+                    ForEach($firestoreManager.leaderboard) { $userScore in
+                        HStack {
+                            PersonLeaderboardDetail(person: $userScore)
+                        }
+                        .padding()
+                    }
+                    .listStyle(PlainListStyle())
+                }
             }
         }
-        .padding(.top, 20)
-        .navigationBarTitle("")
+        .navigationTitle("")
         .navigationBarHidden(true)
-        
     }
 }
-
 
 struct LeaderboardView_Previews: PreviewProvider {
     static var previews: some View {

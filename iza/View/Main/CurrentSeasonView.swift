@@ -13,57 +13,60 @@ struct CurrentSeasonView: View {
     @EnvironmentObject var loginModel: LoginViewModel
     private let currentYear = "2022"
     private let currentMonth = "April"
-    @State private var showingDetail: Bool = true
+    @State private var showingDetail: Bool = false
+    
     
     var body: some View {
         VStack {
-            if showingDetail {
-                
-            } else {
-                HStack {
-                    Text("Current Season")
-                        .font(.system(size: 30, weight: .bold))
-                        .padding(.horizontal)
-                    Spacer()
-                }
-            }
-            
-            
-            Button(action: {
-                Task {
-                    await firestoreManager.getSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid)
-                    print(firestoreManager.attemptedBoulders)
-                }
-            }) {
-                Text("load")
+            HStack {
+                Text("Current Season")
+                    .font(.system(size: 30, weight: .bold))
+                    .padding(.horizontal)
+                Spacer()
             }
             
             VStack (alignment: .leading) {
                         NavigationView {
-                            List {
-                                ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
-                                    ZStack {
-                                        NavigationLink(destination: BoulderSheet(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
-                                            EmptyView()
-                                        }
-                                        .onTapGesture {
-                                            showingDetail = true
-                                        }
-                                        
-                                        .padding(0)
-                                        .opacity(0.0)
-                                        .buttonStyle(PlainButtonStyle())
+                            VStack {
+                                Button(action: {
+                                    Task{
+                                        await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                                    }
+                                    
+                                    print(firestoreManager.attemptedBoulders)
+                                }) {
+                                    Text("load")
+                                }
+                                Button("Enroll") {
+                                    Task {
+                                        await firestoreManager.enrollUserInSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                                    }
+                                }
+                                List {
+                                    ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
+                                        ZStack {
+                                            NavigationLink(destination: BoulderSheet(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
+                                                EmptyView()
+                                            }
+                                            .onTapGesture {
+                                                showingDetail = true
+                                            }
                                             
-                                        HStack {
-                                            BoulderView(attemptedBoulder: $attemptedBoulder)
+                                            .padding(0)
+                                            .opacity(0.0)
+                                            .buttonStyle(PlainButtonStyle())
+                                                
+                                            HStack {
+                                                BoulderView(attemptedBoulder: $attemptedBoulder)
+                                            }
                                         }
                                     }
                                 }
+                                .navigationBarTitle("")
+                                .navigationBarHidden(true)
+                                .navigationBarBackButtonHidden(true)
+                                .listStyle(PlainListStyle())
                             }
-                            .navigationBarTitle("")
-                            .navigationBarHidden(true)
-                            .navigationBarBackButtonHidden(true)
-                            .listStyle(PlainListStyle())
                     }
             }
         }
@@ -72,12 +75,6 @@ struct CurrentSeasonView: View {
         .padding(.top, 10)
         .onAppear {
             UITableView.appearance().separatorColor = .clear
-                
-            Task {
-                
-                await firestoreManager.getSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid)
-                print(firestoreManager.attemptedBoulders)
-            }
         }
         
     }

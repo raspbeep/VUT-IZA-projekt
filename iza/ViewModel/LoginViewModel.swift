@@ -94,7 +94,7 @@ class LoginViewModel: ObservableObject {
             
             $password
                 .map { password in
-                    return password.count > 8
+                    return password.count > 7
                 }
                 .assign(to: \.isPasswordCriteriaValid, on: self)
                 .store(in: &cancellableSet)
@@ -184,6 +184,7 @@ class LoginViewModel: ObservableObject {
             print("*** **** **** **** ***")
             print("SIGNED UP")
             print("*** **** **** **** ***")
+            createUserData()
         
         } catch {
             print("There was an error signing up: \(error.localizedDescription.description)")
@@ -220,10 +221,12 @@ class LoginViewModel: ObservableObject {
         let userUID = auth.currentUser?.uid
     
         db.collection("users").document("\(userUID!)").setData([
+            "uid"            : userUID ?? "",
             "firstName"     : firstName,
             "lastName"      : lastName,
+            "nickName"      : nickName,
             "email"         : email,
-            "dateOfBirth"   : dateOfBirth,
+            "dateOfBirth"   : dateOfBirth.description,
             "gender"        : gender.rawValue,
             "category"      : category
             ])

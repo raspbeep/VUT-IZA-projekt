@@ -11,29 +11,25 @@ import SwiftUI
 
 struct PersonLeaderboardDetail: View {
     @EnvironmentObject var loginViewModel: LoginViewModel
-    var person: User
+    @Binding var person: UserScore
     
     var body: some View {
-        ZStack(alignment: .leading) {
-                    Color.secondary
                     HStack {
                         
                         Image("crushit_logo")
                             .resizable()
                             .clipShape(Circle())
                             .shadow(radius: 10)
-                            .overlay(Circle().stroke(Color.yellow, lineWidth: 2))
                             .frame(width: 80, height: 80, alignment: .center)
-                            .padding(.trailing)
                     
                         VStack(alignment: .leading) {
-                            Text("\(person.firstName)")
+                            Text("\(person.user.firstName)")
                                 .font(.headline)
                                 .fontWeight(.bold)
                                 .lineLimit(1)
                                 .padding(.bottom, 5)
                             
-                            Text("@\(person.nickName)")
+                            Text("@\(person.user.nickName)")
                                 .padding(.bottom, 5)
                         }
                         .padding(.horizontal)
@@ -45,37 +41,22 @@ struct PersonLeaderboardDetail: View {
                             Text("tries:")
                             Spacer()
                         }
-                        
-                        
+
                         VStack {
                             Spacer()
-                            Text("\(45)")
+                            Text("\(person.tops)")
                             Spacer()
-                            Text("\(12)")
+                            Text("\(person.tries)")
                             Spacer()
                         }
                     }
-                    .padding()
-                }
-            
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .padding(.horizontal)
+//                .clipShape(RoundedRectangle(cornerRadius: 15))
     }
 }
 
 
-struct PersonLeaderboardDetail_Previews: PreviewProvider {
+struct PersonLeaderBoard_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            ScrollView {
-                PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
-                
-                PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
-                
-                PersonLeaderboardDetail(person: User(id: "dsa", email: "dasd", firstName: "Pavel", lastName: "Kratochvil", nickName: "pavel4000", dateOfBirth: Date(), gender: "male", category: "profi"))
-                                        
-            }
-        }
-        .environmentObject(LoginViewModel())
+        LeaderboardView()
     }
 }

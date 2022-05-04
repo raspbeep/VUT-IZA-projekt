@@ -88,12 +88,8 @@ struct BoulderSheet: View {
             Button(action: {
                 dismiss()
                 Task {
-                    if self.boulderHasChanged {
-                        try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
-                        self.attemptedBoulder.setFromCopy(copyFrom: attemptedBoulder)
-                        
-                        
-                    }
+                    try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
+                    self.attemptedBoulder.setFromCopy(copyFrom: attemptedBoulder)
                 }
             }, label: {
                 Text("Save")
