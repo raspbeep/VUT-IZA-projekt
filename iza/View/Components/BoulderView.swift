@@ -45,6 +45,7 @@ struct BoulderView: View {
                     }
                     
                     Spacer()
+                    VStack(alignment: .trailing) {
                     HStack {
                         Spacer()
                         VStack(alignment:.leading) {
@@ -75,9 +76,10 @@ struct BoulderView: View {
                             }
                         }
                     }
+                    }
+                    .padding(.trailing, 10)
                     
                     
-                    Spacer()
                     
                     HStack {
                         if attemptedBoulder.attempt.tries == "1" && attemptedBoulder.attempt.topped == true {

@@ -13,43 +13,60 @@ struct CurrentSeasonView: View {
     @EnvironmentObject var loginModel: LoginViewModel
     private let currentYear = "2022"
     private let currentMonth = "April"
-    @State private var showingDetail: Bool = false
+    @State private var isEnrolled: Bool = false
+    @State var firstAppear: Bool = true
     
     
     var body: some View {
         VStack {
             HStack {
+                
                 Text("Current Season")
                     .font(.system(size: 30, weight: .bold))
-                    .padding(.horizontal)
                 Spacer()
+                
+                if isEnrolled {
+                    Button(action: {
+                        Task {
+                            let _ = await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                        }
+                    }) {
+                        Label("", systemImage: "arrow.clockwise")
+                            .font(.system(size: 30, weight: .bold))
+                            
+                    }
+                } else {
+                    Button(action: {
+                        Task {
+                            Task {
+                                await firestoreManager.enrollUserInSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                                await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                                let res = await firestoreManager.checkEnrollment(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                                if res > 0 {
+                                    self.isEnrolled = true
+                                } else {
+                                    self.isEnrolled = false
+                                }
+                            }
+                        }
+                    }) {
+                        Text("Sign up")
+                            .font(.system(size: 30, weight: .semibold))
+                    }
+                }
+                
             }
+            .padding([.top, .horizontal])
             
             VStack (alignment: .leading) {
                         NavigationView {
                             VStack {
-                                Button(action: {
-                                    Task{
-                                        await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
-                                    }
-                                    
-                                    print(firestoreManager.attemptedBoulders)
-                                }) {
-                                    Text("load")
-                                }
-                                Button("Enroll") {
-                                    Task {
-                                        await firestoreManager.enrollUserInSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
-                                    }
-                                }
+                                
                                 List {
                                     ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
                                         ZStack {
                                             NavigationLink(destination: BoulderSheet(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
                                                 EmptyView()
-                                            }
-                                            .onTapGesture {
-                                                showingDetail = true
                                             }
                                             
                                             .padding(0)
@@ -69,14 +86,25 @@ struct CurrentSeasonView: View {
                             }
                     }
             }
+            .onAppear {
+                if !self.firstAppear { return }
+                Task {
+                    let res = await firestoreManager.checkEnrollment(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                    if res > 0 {
+                        self.isEnrolled = true
+                        await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                        self.firstAppear = false
+                    } else {
+                        self.isEnrolled = false
+                        self.firstAppear = false
+                    }
+                }
+                
+                
+            }
         }
         .navigationTitle("")
         .navigationBarHidden(true)
-        .padding(.top, 10)
-        .onAppear {
-            UITableView.appearance().separatorColor = .clear
-        }
-        
     }
 }
 

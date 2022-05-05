@@ -55,7 +55,6 @@ final class FirestoreManager: ObservableObject {
         
         do {
             let snapshot = try await newQuery.getDocuments()
-            print(snapshot.documents.compactMap {try? $0.data(as: Attempt.self)})
             return snapshot.documents.compactMap {try? $0.data(as: Attempt.self)}
         } catch {
             print("nope")
@@ -101,13 +100,6 @@ final class FirestoreManager: ObservableObject {
         }
     }
     
-
-    
-    // gets users from db and stores them in users: [User]
-    func fetchUsers(forIDs: [String]?) async throws {
-        do {}
-    }
-    
     func fetchSeasons(year: String, month: String, userId: String?) async {
         let season = await getSeason(year: year, month: month, userID: userId)
         
@@ -121,10 +113,16 @@ final class FirestoreManager: ObservableObject {
         let b = await getBoulders(year: year, month: month)
         let a = await getAttempts(boulderID: nil, userID: userID, forBoulderIDs: nil)
         
-        print(a)
-        print(b)
-        let compiled = compile(boulders: b, attempts: a)
-        print(compiled)
+        var compiled = compile(boulders: b, attempts: a)
+        for boulder in compiled {
+            print(boulder.boulder.number)
+        }
+        print("#######COMPILE#########")
+        compiled.sort(by: { Int($0.boulder.number)! < Int($1.boulder.number)!  })
+        
+        for boulder in compiled {
+            print(boulder.boulder.number)
+        }
         return compiled
     }
     
@@ -135,7 +133,6 @@ final class FirestoreManager: ObservableObject {
                 returnVal.append(AttemptedBoulder(id: UUID().uuidString, boulder: boulder, attempt: attempt))
             }
         }
-        print("ReturnVal: \(returnVal)")
         return returnVal
     }
     
@@ -145,7 +142,6 @@ final class FirestoreManager: ObservableObject {
                 return attempt
             }
         }
-        
         return nil
     }
     
@@ -159,14 +155,12 @@ final class FirestoreManager: ObservableObject {
         }
     }
     
-    
     func fetchLeaderBoard(year: String?, month: String?) async {
         let leaderboard = await getLeaderBoard(year: year, month: month)
         
         DispatchQueue.main.async {
             self.leaderboard = leaderboard
         }
-        
     }
     
     func getLeaderBoard(year: String?, month: String?) async -> [UserScore] {
@@ -177,19 +171,19 @@ final class FirestoreManager: ObservableObject {
         for boulder in listOfBoulders {
             boulderIDs.append(boulder.id ?? "")
         }
-        //print(boulderIDs)
-        
         
         let listOfAttempts = await getAttempts(boulderID: nil, userID: nil, forBoulderIDs: boulderIDs)
-        //print(listOfAttempts)
+
         var userIDs = [String]()
         for attempt in listOfAttempts {
             if !userIDs.contains(where: {attempt.userID == $0}) {
                 userIDs.append(attempt.userID)
             }
         }
-        //print(userIDs)
         
+        if userIDs == [] {
+            return []
+        }
         
         let users = await getUsers(forIDs: userIDs)
         
@@ -198,7 +192,6 @@ final class FirestoreManager: ObservableObject {
         for user in users {
             var userScore = UserScore(id: UUID().uuidString, user: user, tops: "0", tries: "0")
             for attempt in listOfAttempts {
-                print(attempt)
                 if attempt.userID == user.uid {
                     if attempt.topped {
                         userScore.tops = String(Int(userScore.tops)! + 1)
@@ -208,7 +201,6 @@ final class FirestoreManager: ObservableObject {
             }
             userScores.append(userScore)
         }
-        //print(userScores)
         
         userScores.sort(by: { $0.tries < $1.tries })
         userScores.sort(by: { $0.tops > $1.tops })
@@ -217,9 +209,20 @@ final class FirestoreManager: ObservableObject {
         
     }
 
-    func enrollUserInSeason(year: String, month: String, userID: String) async {
+    func checkEnrollment(year: String, month: String, userID: String) async  -> Int {
         let boulders = await getBoulders(year: year, month: month)
+        var boulderIDs = [String]()
+        for boulder in boulders {
+            boulderIDs.append(boulder.id ?? "")
+        }
+        let attempts = await getAttempts(boulderID: nil, userID: userID, forBoulderIDs: boulderIDs)
+        return attempts.count
+    }
+    
+    func enrollUserInSeason(year: String, month: String, userID: String) async {
+        if await checkEnrollment(year: year, month: month, userID: userID)  > 0 { return }
         
+        let boulders = await getBoulders(year: year, month: month)
         for boulder in boulders {
             do {
                 let _ = try await Firestore.firestore().collection("attempts").addDocument(data: [

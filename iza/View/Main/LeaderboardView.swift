@@ -18,14 +18,23 @@ struct LeaderboardView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
-                Task {
-                    let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
-                    print(firestoreManager.leaderboard)
+            HStack {
+                Text("Leaderboard")
+                    .font(.system(size: 30, weight: .bold))
+                Spacer()
+                
+                Button(action: {
+                    Task {
+                        let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                    }
+                }) {
+                    Label("", systemImage: "arrow.clockwise")
+                        .font(.system(size: 30, weight: .bold))
+                        
                 }
-            }) {
-                Text("load")
             }
+            .padding([.top, .horizontal])
+            
             VStack {
                 List {
                     ForEach($firestoreManager.leaderboard) { $userScore in
@@ -36,6 +45,11 @@ struct LeaderboardView: View {
                     }
                     .listStyle(PlainListStyle())
                 }
+            }
+        }
+        .onAppear {
+            Task {
+                let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
             }
         }
         .navigationTitle("")

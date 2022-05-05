@@ -23,7 +23,7 @@ struct TabBar: View {
                 LeaderboardView()
             }
                 .tabItem {
-                    Text("Home")
+                    Text("Podium")
                     Image(systemName: "chart.bar.fill")
                 }
                 .tag(1)
