@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 
 struct CurrentSeasonView: View {
-    @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
+    @EnvironmentObject var firestoreManager: FirestoreManager
     @EnvironmentObject var loginModel: LoginViewModel
     var currentYear = "2022"
     var currentMonth = "April"

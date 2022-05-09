@@ -53,7 +53,7 @@ struct TabBar: View {
                 FavoritesView()
             }
                 .tabItem {
-                    Label("Favorites", systemImage: "heart")
+                    Label("Performance", systemImage: "heart")
                 }
                 .tag(4)
                 .navigationViewStyle(.stack)

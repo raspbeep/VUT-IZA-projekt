@@ -9,14 +9,14 @@ import SwiftUI
 
 
 struct LeaderboardView: View {
-    @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
+    @EnvironmentObject var firestoreManager: FirestoreManager
     @EnvironmentObject var loginModel: LoginViewModel
     @Environment(\.dismiss) var dismiss
     
     var currentYear = "2022"
     var currentMonth = "April"
     @State var showHeader: Bool = true
-    
+    @State var selectedCategory: String = "profi"
     var body: some View {
         VStack {
                 if showHeader {
@@ -43,21 +43,34 @@ struct LeaderboardView: View {
                         Button(action: {
                             dismiss()
                         }, label: {
-                            Text("Back")
+                            Image(systemName: "chevron.backward")
                                 .padding(.leading)
                         })
                         Spacer()
-                        Text("Showing: \(currentYear), \(currentMonth)")
+                        
+                        Text("\(currentYear), \(currentMonth)")
                             .padding(.trailing)
                     }
+                    
+                    Picker(selection: self.$selectedCategory, label: EmptyView()) {
+                            ForEach(["profi", "hobby"], id: \.self) {
+                                Text($0)
+                            }
+                            
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(5)
                 }
                 
                 List {
                     ForEach($firestoreManager.leaderboard) { $userScore in
-                        HStack {
-                            PersonLeaderboardDetail(person: $userScore)
+                        if userScore.user.category == selectedCategory {
+                            HStack {
+                                PersonLeaderboardDetail(person: $userScore)
+                            }
+                            .padding(5)
                         }
-                        .padding(5)
+                        
                     }
                     .refreshable {
                         Task {

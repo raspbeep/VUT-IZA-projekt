@@ -75,10 +75,3 @@ struct SettingsView: View {
         .navigationBarHidden(true)
     }
 }
-
-
-//struct Settings_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView()
-//    }
-//}
