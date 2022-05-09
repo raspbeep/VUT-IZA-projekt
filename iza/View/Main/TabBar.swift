@@ -31,7 +31,7 @@ struct TabBar: View {
                 
             
             NavigationView {
-                SeasonsView()
+                PreviousSeasonsView()
             }
                 .tabItem {
                     Label("Previous", systemImage: "calendar")

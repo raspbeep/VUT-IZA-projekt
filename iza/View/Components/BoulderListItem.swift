@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct BoulderView: View {
+struct BoulderListItem: View {
     @Binding var attemptedBoulder: AttemptedBoulder
     
     let categories = ["crimp", "sloper"]
@@ -78,8 +78,6 @@ struct BoulderView: View {
                     }
                     }
                     .padding(.trailing, 10)
-                    
-                    
                     
                     HStack {
                         if attemptedBoulder.attempt.tries == "1" && attemptedBoulder.attempt.topped == true {

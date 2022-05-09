@@ -18,7 +18,7 @@ final class FirestoreManager: ObservableObject {
     
     @Published var attempts: [Attempt] = []
     @Published var boulders: [Boulder] = []
-    @Published var seasons: [Seasons] = []
+    @Published var seasons: [Season] = []
     @Published var attemptedBoulders: [AttemptedBoulder] = []
     @Published var leaderboard: [UserScore] = []
     @Published var users: [User] = []
@@ -114,15 +114,7 @@ final class FirestoreManager: ObservableObject {
         let a = await getAttempts(boulderID: nil, userID: userID, forBoulderIDs: nil)
         
         var compiled = compile(boulders: b, attempts: a)
-        for boulder in compiled {
-            print(boulder.boulder.number)
-        }
-        print("#######COMPILE#########")
-        compiled.sort(by: { Int($0.boulder.number)! < Int($1.boulder.number)!  })
-        
-        for boulder in compiled {
-            print(boulder.boulder.number)
-        }
+        compiled.sort(by: { Int($0.boulder.number)! < Int($1.boulder.number)! })
         return compiled
     }
     
@@ -202,8 +194,8 @@ final class FirestoreManager: ObservableObject {
             userScores.append(userScore)
         }
         
-        userScores.sort(by: { $0.tries < $1.tries })
-        userScores.sort(by: { $0.tops > $1.tops })
+        userScores.sort(by: { Int($0.tries)! < Int($1.tries)! })
+        userScores.sort(by: { Int($0.tops)! > Int($1.tops)! })
         
         return userScores
         
@@ -235,6 +227,23 @@ final class FirestoreManager: ObservableObject {
             } catch let error {
                 print("creating enrollment \(error)")
             }
+        }
+    }
+    
+    func fetchAllSeasons() async {
+        let seasons = await getAllSeasons()
+        
+        DispatchQueue.main.async {
+            self.seasons = seasons
+        }
+    }
+    
+    func getAllSeasons() async  -> [Season] {
+        do {
+            let snapshot = try await Firestore.firestore().collection("rounds").getDocuments()
+            return snapshot.documents.compactMap {try? $0.data(as: Season.self)}
+        } catch {
+            return []
         }
     }
 }

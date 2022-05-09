@@ -11,8 +11,8 @@ import Firebase
 struct CurrentSeasonView: View {
     @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
     @EnvironmentObject var loginModel: LoginViewModel
-    private let currentYear = "2022"
-    private let currentMonth = "April"
+    var currentYear = "2022"
+    var currentMonth = "April"
     @State private var isEnrolled: Bool = false
     @State var firstAppear: Bool = true
     
@@ -65,7 +65,7 @@ struct CurrentSeasonView: View {
                                 List {
                                     ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
                                         ZStack {
-                                            NavigationLink(destination: BoulderSheet(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
+                                            NavigationLink(destination: BoulderDetailView(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
                                                 EmptyView()
                                             }
                                             
@@ -74,34 +74,34 @@ struct CurrentSeasonView: View {
                                             .buttonStyle(PlainButtonStyle())
                                                 
                                             HStack {
-                                                BoulderView(attemptedBoulder: $attemptedBoulder)
+                                                BoulderListItem(attemptedBoulder: $attemptedBoulder)
                                             }
                                         }
                                     }
                                 }
                                 .navigationBarTitle("")
                                 .navigationBarHidden(true)
-                                .navigationBarBackButtonHidden(true)
+                                //.navigationBarBackButtonHidden(true)
                                 .listStyle(PlainListStyle())
                             }
                     }
             }
-            .onAppear {
-                if !self.firstAppear { return }
-                Task {
-                    let res = await firestoreManager.checkEnrollment(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
-                    if res > 0 {
-                        self.isEnrolled = true
-                        await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
-                        self.firstAppear = false
-                    } else {
-                        self.isEnrolled = false
-                        self.firstAppear = false
-                    }
+        }
+        .onAppear {
+            if !self.firstAppear { return }
+            Task {
+                let res = await firestoreManager.checkEnrollment(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                if res > 0 {
+                    self.isEnrolled = true
+                    await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                    self.firstAppear = false
+                } else {
+                    self.isEnrolled = false
+                    self.firstAppear = false
                 }
-                
-                
             }
+            
+            
         }
         .navigationTitle("")
         .navigationBarHidden(true)

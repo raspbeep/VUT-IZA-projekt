@@ -11,37 +11,58 @@ import SwiftUI
 struct LeaderboardView: View {
     @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
     @EnvironmentObject var loginModel: LoginViewModel
-    private let currentYear = "2022"
-    private let currentMonth = "April"
-    @State private var showingDetail: Bool = true
+    @Environment(\.dismiss) var dismiss
     
+    var currentYear = "2022"
+    var currentMonth = "April"
+    @State var showHeader: Bool = true
     
     var body: some View {
         VStack {
-            HStack {
-                Text("Leaderboard")
-                    .font(.system(size: 30, weight: .bold))
-                Spacer()
-                
-                Button(action: {
-                    Task {
-                        let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
-                    }
-                }) {
-                    Label("", systemImage: "arrow.clockwise")
-                        .font(.system(size: 30, weight: .bold))
+                if showHeader {
+                    HStack {
+                        Text("Leaderboard")
+                            .font(.system(size: 30, weight: .bold))
+                        Spacer()
                         
+                        Button(action: {
+                            Task {
+                                let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                            }
+                        }) {
+                            Label("", systemImage: "arrow.clockwise")
+                                .font(.system(size: 30, weight: .bold))
+                        }
+                    }
+                    .padding()
                 }
-            }
-            .padding([.top, .horizontal])
             
             VStack {
+                HStack {
+                    if !showHeader {
+                        Button(action: {
+                            dismiss()
+                        }, label: {
+                            Text("Back")
+                                .padding(.leading)
+                        })
+                        Spacer()
+                        Text("Showing: \(currentYear), \(currentMonth)")
+                            .padding(.trailing)
+                    }
+                }
+                
                 List {
                     ForEach($firestoreManager.leaderboard) { $userScore in
                         HStack {
                             PersonLeaderboardDetail(person: $userScore)
                         }
-                        .padding()
+                        .padding(5)
+                    }
+                    .refreshable {
+                        Task {
+                            let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                        }
                     }
                     .listStyle(PlainListStyle())
                 }

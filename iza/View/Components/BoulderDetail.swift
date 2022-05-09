@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 
-struct BoulderSheet: View {
+struct BoulderDetailView: View {
     @StateObject var firestoreManager: FirestoreManager = FirestoreManager()
     @Binding var attemptedBoulder: AttemptedBoulder
     @State var boulderHasChanged: Bool
@@ -103,28 +103,6 @@ struct BoulderSheet: View {
 
             Spacer()
         }
-//        .navigationBarBackButtonHidden(true)
-//        .navigationBarItems(
-//            leading:
-//                Button(action : { dismiss() }){
-//                    Text("Cancel")
-//                },
-//            trailing:
-//
-//                Button(action : {
-//                    dismiss()
-//                    Task {
-//                        if self.boulderHasChanged {
-//                            try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
-//
-//                        }
-//                    }
-//                }){
-//                    Text("Save")
-//
-//                })
-            
-        
     }
 }
 
