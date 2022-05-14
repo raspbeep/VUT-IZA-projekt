@@ -46,11 +46,17 @@ struct BoulderDetailView: View {
                         }
                         
                         }) {
-                        Image(systemName: "minus")
+                        Circle()
+                            
+                            .fill(.white)
+                            .overlay(Circle().stroke(lineWidth: 6))
+                            .foregroundColor(Color.lightRedCard)
+                            .overlay(
+                                Image(systemName: "minus")
+                                    .foregroundColor(Color.black)
+                            )
                             .frame(width: 100, height: 100)
-                            .foregroundColor(Color.black)
-                            .background(Color.lightGreenCard)
-                            .clipShape(Circle())
+                        
                     }
                     
                     Spacer()
@@ -59,15 +65,19 @@ struct BoulderDetailView: View {
                         self.boulderHasChanged = true
                         self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! + 1)
                         }) {
-                        Image(systemName: "plus")
-                            .frame(width: 100, height: 100)
-                            .foregroundColor(Color.lightRedCard)
-                            .background(Color.red)
-                            .clipShape(Circle())
+                            Circle()
+                                
+                                .fill(.white)
+                                .overlay(Circle().stroke(lineWidth: 6))
+                                .foregroundColor(Color.lightGreenCard)
+                                .overlay(
+                                    Image(systemName: "plus")
+                                        .foregroundColor(Color.black)
+                                )
+                                .frame(width: 100, height: 100)
                     }
                     Spacer()
                 }
-                
                 
                 VStack {
                    Text("Topped")

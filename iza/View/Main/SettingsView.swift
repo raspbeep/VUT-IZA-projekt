@@ -17,9 +17,11 @@ struct SettingsView: View {
             HStack {
                 Text("Profile")
                     .font(.system(size: 30, weight: .bold))
-                    .padding(.horizontal)
                 Spacer()
             }
+            .padding([.top, .horizontal])
+            
+            
             Spacer()
             Form {
                 Section(header: Text("First name")) {
@@ -70,7 +72,6 @@ struct SettingsView: View {
             }
             
         }
-        .padding(.top, 10)
         .navigationBarTitle("")
         .navigationBarHidden(true)
     }

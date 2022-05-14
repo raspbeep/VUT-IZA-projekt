@@ -29,7 +29,7 @@ struct SignUpView: View {
                 EntryField(sfSymbolName: "person.crop.circle", placeholder: "Nickname", prompt: loginModel.nicknamePrompt, field: $loginModel.nickName)
                 
                 DatePicker(selection: $loginModel.dateOfBirth, displayedComponents: .date) {
-                                Text("Select a date")
+                                Text("Date of birth")
                         .padding(.leading)
                 }
                 .padding(5)
@@ -58,8 +58,6 @@ struct SignUpView: View {
                         .background(Color(.secondarySystemBackground))
                         .cornerRadius(5.0)
                 }
-                
-                    
             }
             
             Spacer()

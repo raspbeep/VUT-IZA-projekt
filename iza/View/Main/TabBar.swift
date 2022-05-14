@@ -15,7 +15,7 @@ import SwiftUI
 //}
 
 struct TabBar: View {
-    @Binding var selection: Int
+    @State var selection: Int = 1
     
     var body: some View {
         TabView (selection: $selection){
