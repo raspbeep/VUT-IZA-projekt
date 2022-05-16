@@ -40,9 +40,10 @@
 		E9C4DD40282183BF0005AC1E /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3F282183BF0005AC1E /* Season.swift */; };
 		E9C4DD4228227F9B0005AC1E /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD4128227F9B0005AC1E /* UserScore.swift */; };
 		E9CE7B7428186A98003BFFF7 /* BoulderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderListItem.swift */; };
-		E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* LabelPill.swift */; };
+		E9CE7B7728186E68003BFFF7 /* SmallPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* SmallPillLabel.swift */; };
 		E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7828187530003BFFF7 /* ColorExtension.swift */; };
 		E9E6AD6B282947800044EA85 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = E9E6AD6A282947800044EA85 /* SwiftUICharts */; };
+		E9E84AC528302644002E3934 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E84AC428302644002E3934 /* CircleButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,8 +74,9 @@
 		E9C4DD3F282183BF0005AC1E /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		E9C4DD4128227F9B0005AC1E /* UserScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScore.swift; sourceTree = "<group>"; };
 		E9CE7B7328186A98003BFFF7 /* BoulderListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderListItem.swift; sourceTree = "<group>"; };
-		E9CE7B7628186E68003BFFF7 /* LabelPill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelPill.swift; sourceTree = "<group>"; };
+		E9CE7B7628186E68003BFFF7 /* SmallPillLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPillLabel.swift; sourceTree = "<group>"; };
 		E9CE7B7828187530003BFFF7 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		E9E84AC428302644002E3934 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +160,9 @@
 				E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */,
 				E955304A2818120D00A876C5 /* EntryField.swift */,
 				E9CE7B7328186A98003BFFF7 /* BoulderListItem.swift */,
-				E9CE7B7628186E68003BFFF7 /* LabelPill.swift */,
+				E9CE7B7628186E68003BFFF7 /* SmallPillLabel.swift */,
 				E9708EFD281BDBF9001FEF5E /* BoulderDetail.swift */,
+				E9E84AC428302644002E3934 /* CircleButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				E955304B2818120D00A876C5 /* EntryField.swift in Sources */,
 				E955303D281802C500A876C5 /* SignInView.swift in Sources */,
 				E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */,
+				E9E84AC528302644002E3934 /* CircleButton.swift in Sources */,
 				E95530372818026300A876C5 /* SettingsView.swift in Sources */,
 				E95530412818030900A876C5 /* TabBar.swift in Sources */,
 				E95530332818023400A876C5 /* FavoritesView.swift in Sources */,
@@ -312,7 +316,7 @@
 				E96CB1972817FCD700179E8F /* izaApp.swift in Sources */,
 				E955304D281839EB00A876C5 /* User.swift in Sources */,
 				E9C4DD40282183BF0005AC1E /* Season.swift in Sources */,
-				E9CE7B7728186E68003BFFF7 /* LabelPill.swift in Sources */,
+				E9CE7B7728186E68003BFFF7 /* SmallPillLabel.swift in Sources */,
 				E9CE7B7428186A98003BFFF7 /* BoulderListItem.swift in Sources */,
 				E955302F281801E500A876C5 /* PreviousSeasonsView.swift in Sources */,
 			);

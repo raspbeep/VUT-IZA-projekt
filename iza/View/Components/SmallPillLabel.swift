@@ -8,8 +8,7 @@
 import SwiftUI
 
 
-struct SmallLabel: View {
-    
+struct SmallPillLabel: View {
     var text: String
     
     var body: some View {

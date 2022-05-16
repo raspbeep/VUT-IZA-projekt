@@ -17,105 +17,102 @@ struct BoulderDetailView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        VStack {
-            VStack {
-                VStack {
-                    Text(boulderHasChanged.description)
-                    Text(attemptedBoulder.boulder.year)
-                    Text(attemptedBoulder.boulder.month)
+        VStack (alignment: .leading) {
+            VStack (alignment: .leading) {
+                HStack {
+                    Text("Number:")
                     Text(attemptedBoulder.boulder.number)
-                        .fontWeight(.semibold)
-                    
-                    Text(attemptedBoulder.boulder.sector)
-                    Text(attemptedBoulder.boulder.color)
-                    Text(attemptedBoulder.boulder.grade)
-                    Text(attemptedBoulder.boulder.label)
-                    
-                    Text(attemptedBoulder.attempt.topped.description)
-                    Text(attemptedBoulder.attempt.tries)
+                        .padding(.trailing)
+                        .font(.system(size: 20, weight: .semibold))
                 }
                 
                 HStack {
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        self.boulderHasChanged = true
-                        if self.attemptedBoulder.attempt.tries != "0" {
-                            self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! - 1)
-                        }
-                        
-                        }) {
-                        Circle()
-                            
-                            .fill(.white)
-                            .overlay(Circle().stroke(lineWidth: 6))
-                            .foregroundColor(Color.lightRedCard)
-                            .overlay(
-                                Image(systemName: "minus")
-                                    .foregroundColor(Color.black)
-                            )
-                            .frame(width: 100, height: 100)
-                        
-                    }
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        self.boulderHasChanged = true
-                        self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! + 1)
-                        }) {
-                            Circle()
-                                
-                                .fill(.white)
-                                .overlay(Circle().stroke(lineWidth: 6))
-                                .foregroundColor(Color.lightGreenCard)
-                                .overlay(
-                                    Image(systemName: "plus")
-                                        .foregroundColor(Color.black)
-                                )
-                                .frame(width: 100, height: 100)
-                    }
-                    Spacer()
+                    Text("Grade:")
+                    Text(attemptedBoulder.boulder.grade)
+                        .padding(.trailing)
+                        .font(.system(size: 30, weight: .semibold))
                 }
                 
-                VStack {
-                   Text("Topped")
-                       .foregroundColor(attemptedBoulder.attempt.topped ? .green : .gray)
-                   Toggle("boulder", isOn: $attemptedBoulder.attempt.topped)
-                       .labelsHidden()
-                    }.padding()
-                     .overlay(
+                HStack {
+                    Text("Sector:")
+                    Text(attemptedBoulder.boulder.sector)
+                        .padding(.trailing)
+                        .font(.system(size: 30, weight: .semibold))
+                }
+                    
+                HStack {
+                    Text("Color:")
+                    Text(attemptedBoulder.boulder.color)
+                        .padding(.trailing)
+                        .font(.system(size: 30, weight: .semibold))
+                }
+                
+                HStack {
+                    Text("Number of attempts:")
+                    Text(attemptedBoulder.attempt.tries)
+                        .padding(.trailing)
+                        .font(.system(size: 30, weight: .semibold))
+                }
+            }
+            .padding(.leading, 10)
             
-                        RoundedRectangle(cornerRadius: 15)
-                       .stroke(lineWidth: 2)
-                       .foregroundColor(attemptedBoulder.attempt.topped ? .green : .gray)
-                    )
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    self.boulderHasChanged = true
+                    // cannot decrease bellow zero
+                    if self.attemptedBoulder.attempt.tries != "0" {
+                        self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! - 1)
+                    }
+                }) {CircleButton(imageName: "minus", color: Color.lightRedCard)}
+                
+                Spacer()
+                
+                Button(action: {
+                    self.boulderHasChanged = true
+                    self.attemptedBoulder.attempt.tries = String(Int(self.attemptedBoulder.attempt.tries)! + 1)
+                }) {CircleButton(imageName: "plus", color: Color.lightGreenCard)}
+                Spacer()
             }
             
-            Spacer()
-            
-            Button(action: {
-                dismiss()
-                Task {
-                    try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
-                    self.attemptedBoulder.setFromCopy(copyFrom: attemptedBoulder)
+            HStack {
+                Spacer()
+                VStack {
+                    VStack {
+                       Text("Topped")
+                           .foregroundColor(attemptedBoulder.attempt.topped ? .green : .gray)
+                       Toggle("boulder", isOn: $attemptedBoulder.attempt.topped)
+                           .labelsHidden()
+                        }
+                        .padding()
+                        .overlay(
+                           RoundedRectangle(cornerRadius: 15)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(attemptedBoulder.attempt.topped ? .green : .gray)
+                        )
+                
+                        Spacer()
+                        
+                        Button(action: {
+                            dismiss()
+                            Task {
+                                try await firestoreManager.changeAttemptedBoulder(attemptedBoulder: self.attemptedBoulder)
+                                self.attemptedBoulder.setFromCopy(copyFrom: attemptedBoulder)
+                            }
+                        }, label: {
+                            Text("Save")
+                                .font(.headline)
+                                .foregroundColor(Color.white)
+                                .padding()
+                                .frame(width: 200, height: 50)
+                                .background(Color.blue)
+                                .cornerRadius(8.0)
+                        })
                 }
-            }, label: {
-                Text("Save")
-                    .font(.headline)
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .frame(width: 200, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(8.0)
-            })
-
-            Spacer()
+                Spacer()
+            }
         }
+        Spacer()
     }
 }
-
-
-
-

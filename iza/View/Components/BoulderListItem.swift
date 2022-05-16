@@ -70,7 +70,7 @@ struct BoulderListItem: View {
                             if let labelText = attemptedBoulder.boulder.label {
                                 HStack {
                                 
-                                    SmallLabel(text: labelText)
+                                    SmallPillLabel(text: labelText)
                                 }
                                 
                             }

@@ -25,23 +25,23 @@ struct SettingsView: View {
             Spacer()
             Form {
                 Section(header: Text("First name")) {
-                    Text(currentUser.firstName)
+                    Text(loginModel.currentUser.firstName)
                 }
                 Section(header: Text("Last name")) {
-                    Text(currentUser.lastName)
+                    Text(loginModel.currentUser.lastName)
                 }
                 Section(header: Text("Nickname")) {
-                    Text(currentUser.nickName)
+                    Text(loginModel.currentUser.nickName)
                 }
                 Section(header: Text("Gender")) {
-                    Text(currentUser.gender)
+                    Text(loginModel.currentUser.gender)
                 }
 
                 Section(header: Text("Category")) {
-                    Text(currentUser.category)
+                    Text(loginModel.currentUser.category)
                 }
-                Section(header: Text("PROFILE")) {
-                    Text(loginModel.auth.currentUser?.uid ?? "")
+                Section(header: Text("Profile")) {
+                    Text(loginModel.currentUser.uid)
                 }
                     
                 Section(header: Text("About")) {
@@ -64,11 +64,7 @@ struct SettingsView: View {
         }
         .onAppear {
             Task {
-                if let user = await loginModel.getCurrentUser() {
-                    DispatchQueue.main.async {
-                        self.currentUser = user
-                    }
-                }
+                let _ = await loginModel.fetchCurrentUser()
             }
             
         }

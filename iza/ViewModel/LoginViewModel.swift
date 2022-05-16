@@ -14,6 +14,7 @@ import Combine
 class LoginViewModel: ObservableObject {
     @Published var errorMessage = ""
     
+    @Published var currentUser = User(id: "", uid: "", email: "", firstName: "", lastName: "", nickName: "", dateOfBirth: "", gender: "", category: "")
     @Published var firstName = ""
     @Published var lastName = ""
     @Published var nickName = ""
@@ -65,11 +66,6 @@ class LoginViewModel: ObservableObject {
     var nicknamePrompt: String {
         nicknameIsNotEmpty ? "" : "Nickname cannot be empty"
     }
-        
-//        var agePrompt: String {
-//            isAgeValid ? "Year of birth" : "Year of birth (must be 21 years old)"
-//        }
-    
     
     let auth = Auth.auth()
     let db = Firestore.firestore()
@@ -82,77 +78,87 @@ class LoginViewModel: ObservableObject {
         }
     }
     
-    
     var currentUserID: String {
-        return self.auth.currentUser?.uid ?? ""
+        return self.currentUser.uid
     }
     
     let emailPredicate = NSPredicate(format: "SELF MATCHES %@", "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
     
     init() {
-            $email
-                .map { email in
-                    return self.emailPredicate.evaluate(with: email)
-                }
-                .assign(to: \.isEmailCriteriaValid, on: self)
-                .store(in: &cancellableSet)
-            
-            $password
-                .map { password in
-                    return password.count > 7
-                }
-                .assign(to: \.isPasswordCriteriaValid, on: self)
-                .store(in: &cancellableSet)
-            
-            $firstName
-                .map { name in
-                    return name.count > 0
-                }
-                .assign(to: \.firstNameIsNotEmpty, on: self)
-                .store(in: &cancellableSet)
-        
-            $lastName
-                .map { name in
-                    return name.count > 0
-                }
-                .assign(to: \.lastNameIsNotEmpty, on: self)
-                .store(in: &cancellableSet)
-            
-            $nickName
-                .map { password in
-                    return password.count > 0
-                }
-                .assign(to: \.nicknameIsNotEmpty, on: self)
-                .store(in: &cancellableSet)
-                
-            Publishers.CombineLatest($password, $passwordAgain)
-                .map { password, confirmPw in
-                    return password == confirmPw
-                }
-                .assign(to: \.isPasswordConfirmValid, on: self)
-                .store(in: &cancellableSet)
-        
-            Publishers.CombineLatest3($firstNameIsNotEmpty, $lastNameIsNotEmpty, $nicknameIsNotEmpty)
-            .map{ firstNameIsNotEmpty, lastNameIsNotEmpty, nicknameIsNotEmpty in
-                return firstNameIsNotEmpty && lastNameIsNotEmpty && nicknameIsNotEmpty
-            }
-            .assign(to: \.namesAreValid, on: self)
-            .store(in: &cancellableSet)
-            
-            Publishers.CombineLatest4($isEmailCriteriaValid, $isPasswordCriteriaValid, $isPasswordConfirmValid, $namesAreValid)
-                .map { isEmailCriteriaValid, isPasswordCriteriaValid, isPasswordConfirmValid, namesAreValid in
-                    return isEmailCriteriaValid && isPasswordCriteriaValid && isPasswordConfirmValid && namesAreValid
-                }
-                .assign(to: \.canSubmitSignUp, on: self)
-                .store(in: &cancellableSet)
-        
-        Publishers.CombineLatest($isEmailCriteriaValid, $isPasswordCriteriaValid)
-            .map { isEmailCriteriaValid, isPasswordCriteriaValid in
-                return isEmailCriteriaValid && isPasswordCriteriaValid
-            }
-            .assign(to: \.canSubmitSignIn, on: self)
-            .store(in: &cancellableSet)
+        Task {
+            //await self.fetchCurrentUser()
         }
+        $email
+            .map { email in
+                return self.emailPredicate.evaluate(with: email)
+            }
+            .assign(to: \.isEmailCriteriaValid, on: self)
+            .store(in: &cancellableSet)
+        
+        $password
+            .map { password in
+                return password.count > 7
+            }
+            .assign(to: \.isPasswordCriteriaValid, on: self)
+            .store(in: &cancellableSet)
+        
+        $firstName
+            .map { name in
+                return name.count > 0
+            }
+            .assign(to: \.firstNameIsNotEmpty, on: self)
+            .store(in: &cancellableSet)
+    
+        $lastName
+            .map { name in
+                return name.count > 0
+            }
+            .assign(to: \.lastNameIsNotEmpty, on: self)
+            .store(in: &cancellableSet)
+        
+        $nickName
+            .map { password in
+                return password.count > 0
+            }
+            .assign(to: \.nicknameIsNotEmpty, on: self)
+            .store(in: &cancellableSet)
+            
+        Publishers.CombineLatest($password, $passwordAgain)
+            .map { password, confirmPw in
+                return password == confirmPw
+            }
+            .assign(to: \.isPasswordConfirmValid, on: self)
+            .store(in: &cancellableSet)
+    
+        Publishers.CombineLatest3($firstNameIsNotEmpty, $lastNameIsNotEmpty, $nicknameIsNotEmpty)
+        .map{ firstNameIsNotEmpty, lastNameIsNotEmpty, nicknameIsNotEmpty in
+            return firstNameIsNotEmpty && lastNameIsNotEmpty && nicknameIsNotEmpty
+        }
+        .assign(to: \.namesAreValid, on: self)
+        .store(in: &cancellableSet)
+        
+        Publishers.CombineLatest4($isEmailCriteriaValid, $isPasswordCriteriaValid, $isPasswordConfirmValid, $namesAreValid)
+            .map { isEmailCriteriaValid, isPasswordCriteriaValid, isPasswordConfirmValid, namesAreValid in
+                return isEmailCriteriaValid && isPasswordCriteriaValid && isPasswordConfirmValid && namesAreValid
+            }
+            .assign(to: \.canSubmitSignUp, on: self)
+            .store(in: &cancellableSet)
+    
+    Publishers.CombineLatest($isEmailCriteriaValid, $isPasswordCriteriaValid)
+        .map { isEmailCriteriaValid, isPasswordCriteriaValid in
+            return isEmailCriteriaValid && isPasswordCriteriaValid
+        }
+        .assign(to: \.canSubmitSignIn, on: self)
+        .store(in: &cancellableSet)
+    }
+    
+    func fetchCurrentUser() async {
+        guard let user = await self.getCurrentUser() else { return }
+        DispatchQueue.main.async {
+            self.currentUser = user
+        }
+        
+    }
     
     func getCurrentUser() async -> User? {
         let query = Firestore.firestore().collection("users").whereField("uid", isEqualTo: self.currentUserID)
@@ -167,16 +173,13 @@ class LoginViewModel: ObservableObject {
     
     func signIn() async {
         do {
-            let authDataResult = try await auth.signIn(withEmail: email, password: password)
-            let user = authDataResult.user
+            let _ = try await auth.signIn(withEmail: email, password: password)
             
-            print("Signed in as \(user.uid), with email \(user.email ?? "")")
+            await self.fetchCurrentUser()
+            
             DispatchQueue.main.async {
                 self.signedIn = true
             }
-            print("*** **** **** **** ***")
-            print("SIGNED IN")
-            print("*** **** **** **** ***")
             
         } catch {
             print("There was an error signing in: \(error.localizedDescription.description)")
@@ -188,18 +191,14 @@ class LoginViewModel: ObservableObject {
     
     func signUp() async {
         do {
-            let authDataResult = try await auth.createUser(withEmail: email, password: password)
-            let user = authDataResult.user
-        
-            print("Signed up as \(user.uid), with email \(user.email ?? "")")
+            let _ = try await auth.createUser(withEmail: email, password: password)
+            
+            await self.fetchCurrentUser()
             
             DispatchQueue.main.async {
                 self.signedIn = true
             }
-            
-            print("*** **** **** **** ***")
-            print("SIGNED UP")
-            print("*** **** **** **** ***")
+
             createUserData()
         
         } catch {
@@ -219,11 +218,9 @@ class LoginViewModel: ObservableObject {
             self.firstName = ""
             self.lastName = ""
             self.nickName = ""
-            
-            print("*** **** **** **** ***")
-            print("SIGNED OUT")
-            print("*** **** **** **** ***")
-            
+            Task {
+                await self.fetchCurrentUser()
+            }
         }
     }
     
