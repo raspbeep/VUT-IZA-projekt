@@ -9,7 +9,6 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-
 final class FirestoreManager: ObservableObject {
     private let bouldersQuery: Query = Firestore.firestore().collection("boulders")
     private let attemptsQuery: Query = Firestore.firestore().collection("attempts")
@@ -57,7 +56,7 @@ final class FirestoreManager: ObservableObject {
             let snapshot = try await newQuery.getDocuments()
             return snapshot.documents.compactMap {try? $0.data(as: Attempt.self)}
         } catch {
-            print("nope")
+            print("Error fetching attempts")
             return []
         }
     }
@@ -78,7 +77,7 @@ final class FirestoreManager: ObservableObject {
             let snapshot = try await newQuery.getDocuments()
             return snapshot.documents.compactMap {try? $0.data(as: Boulder.self)}
         } catch {
-            print("nope")
+            print("Error fetching attempts")
             return []
         }
     }
@@ -143,7 +142,7 @@ final class FirestoreManager: ObservableObject {
                 try Firestore.firestore().collection("attempts").document(docID).setData(from: attemptedBoulder.attempt)
             }
         } catch {
-            print("smth")
+            print("Error fetching attempts")
         }
     }
     
@@ -247,6 +246,3 @@ final class FirestoreManager: ObservableObject {
         }
     }
 }
-
-
-

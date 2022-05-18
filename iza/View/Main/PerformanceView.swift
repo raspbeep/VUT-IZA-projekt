@@ -9,16 +9,16 @@ import SwiftUI
 import SwiftUICharts
 
 
-struct FavoritesView: View {
+struct PerformanceView: View {
     @EnvironmentObject var loginModel: LoginViewModel
     @EnvironmentObject var firestoreManager: FirestoreManager
+    @EnvironmentObject var dateViewModel: DateViewModel
     
     @State var attemptedBoulders = [AttemptedBoulder]()
     @State var currentBoulders = [AttemptedBoulder]()
     @State var summary = [MonthScore]()
-    var currentYear: String = "2022"
-    var currentMonth: String = "April"
     @State var barChartData = [(String, Double)]()
+    @State var pieChartData = [Double]()
     
     @State var data = [(String, Int)]()
     
@@ -34,37 +34,29 @@ struct FavoritesView: View {
             
             if barChartData.count > 0 {
                 VStack {
-                    BarChartView(data: ChartData(values: self.generateBarChartData()), title: "Tops in rounds", form: ChartForm.extraLarge, valueSpecifier: "Number of tops: %.0f")
+                    BarChartView(data: ChartData(values: barChartData), title: "Tops each month", form: ChartForm.extraLarge, valueSpecifier: "Number of tops: %.0f")
+                        .padding(.bottom, 15)
                     
-                    PieChartView(data: self.generatePieChartData(), title: "Title", form: ChartForm.extraLarge)
-                    
-                    List {
-                        ForEach(self.$attemptedBoulders) { $attemptedBoulder in
-                            Text(attemptedBoulder.boulder.number)
-                            Text(attemptedBoulder.boulder.sector)
-                            Text(attemptedBoulder.boulder.grade)
-                        }
-                            .listStyle(PlainListStyle())
-                    }
-                        .padding()
+                    Text("Ratio of climbed boulders this month")
+                    PieChartView(data: pieChartData, title: "Ratio of topped boulders this month", form: ChartForm.extraLarge)
                 }
             } else {
                 Spacer()
                 Text("No data to visualize")
-                Text("Enroll in current challenge!")
+                Text("Enroll in the current challenge!")
                 Spacer()
             }
         }
         .onAppear {
             Task {
                 let allBoulders = await firestoreManager.getSeason(year: nil, month: nil, userID: loginModel.auth.currentUser?.uid)
-                let currentBoulders = await firestoreManager.getSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid)
+                let currentBoulders = await firestoreManager.getSeason(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userID: loginModel.auth.currentUser?.uid)
                 
                 DispatchQueue.main.async {
                     self.attemptedBoulders = allBoulders
                     self.currentBoulders = currentBoulders
-
                     self.barChartData = self.generateBarChartData()
+                    self.pieChartData = self.generatePieChartData()
                 }
             }
         }
@@ -107,16 +99,14 @@ struct FavoritesView: View {
         var topped: Double = 0.0
 
         for score in self.attemptedBoulders {
-            if score.boulder.month == self.currentMonth && score.boulder.year == currentYear {
+            if score.boulder.month == dateViewModel.currentMonth && score.boulder.year == dateViewModel.currentYear {
                 total += 1
                 if score.attempt.topped == true {
                     topped += 1
-//                    if score.attempt.tries == 2 {
-//                        flashed +=1
-//                    }
                 }
             }
         }
+        print([total-topped, topped])
         return [total-topped, topped]
     }
 }

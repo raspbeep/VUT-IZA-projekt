@@ -12,6 +12,7 @@ import Firebase
 struct izaApp: App {
     @StateObject var loginViewModel = LoginViewModel()
     @StateObject var firestoreManager = FirestoreManager()
+    @StateObject var dateViewModel = DateViewModel()
     
     init() {
         FirebaseApp.configure()
@@ -22,6 +23,7 @@ struct izaApp: App {
             ContentView()
                 .environmentObject(loginViewModel)
                 .environmentObject(firestoreManager)
+                .environmentObject(dateViewModel)
         }
     }
 }

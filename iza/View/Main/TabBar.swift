@@ -50,7 +50,7 @@ struct TabBar: View {
                 .navigationViewStyle(.stack)
             
             NavigationView {
-                FavoritesView()
+                PerformanceView()
             }
                 .tabItem {
                     Label("Performance", systemImage: "heart")

@@ -11,11 +11,10 @@ import Firebase
 struct CurrentSeasonView: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     @EnvironmentObject var loginModel: LoginViewModel
-    var currentYear = "2022"
-    var currentMonth = "April"
+    @EnvironmentObject var dateViewModel: DateViewModel
+
     @State private var isEnrolled: Bool = false
     @State var firstAppear: Bool = true
-    
     
     var body: some View {
         VStack {
@@ -28,20 +27,19 @@ struct CurrentSeasonView: View {
                 if isEnrolled {
                     Button(action: {
                         Task {
-                            let _ = await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                            let _ = await firestoreManager.fetchSeasons(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userId: loginModel.auth.currentUser?.uid)
                         }
                     }) {
                         Label("", systemImage: "arrow.clockwise")
                             .font(.system(size: 30, weight: .bold))
-                            
                     }
                 } else {
                     Button(action: {
                         Task {
                             Task {
-                                await firestoreManager.enrollUserInSeason(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
-                                await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
-                                let res = await firestoreManager.checkEnrollment(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                                await firestoreManager.enrollUserInSeason(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                                await firestoreManager.fetchSeasons(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userId: loginModel.auth.currentUser?.uid)
+                                let res = await firestoreManager.checkEnrollment(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
                                 if res > 0 {
                                     self.isEnrolled = true
                                 } else {
@@ -54,54 +52,55 @@ struct CurrentSeasonView: View {
                             .font(.system(size: 30, weight: .semibold))
                     }
                 }
-                
             }
             .padding([.top, .horizontal])
             
             VStack (alignment: .leading) {
-                        NavigationView {
-                            VStack {
-                                
-                                List {
-                                    ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
-                                        ZStack {
-                                            NavigationLink(destination: BoulderDetailView(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
-                                                EmptyView()
-                                            }
-                                            
-                                            .padding(0)
-                                            .opacity(0.0)
-                                            .buttonStyle(PlainButtonStyle())
-                                                
-                                            HStack {
-                                                BoulderListItem(attemptedBoulder: $attemptedBoulder)
-                                            }
-                                        }
+                if !isEnrolled {
+                    VStack {
+                        Text("You are not enrolled in the current season. Sign up to record your performance!")
+                            .padding()
+                    }
+                }
+                NavigationView {
+                    VStack {
+                        List {
+                            ForEach($firestoreManager.attemptedBoulders) { $attemptedBoulder in
+                                ZStack {
+                                    NavigationLink(destination: BoulderDetailView(attemptedBoulder: $attemptedBoulder, boulderHasChanged: false)) {
+                                        EmptyView()
+                                    }
+                                    
+                                    .padding(0)
+                                    .opacity(0.0)
+                                    .buttonStyle(PlainButtonStyle())
+                                        
+                                    HStack {
+                                        BoulderListItem(attemptedBoulder: $attemptedBoulder)
                                     }
                                 }
-                                .navigationBarTitle("")
-                                .navigationBarHidden(true)
-                                //.navigationBarBackButtonHidden(true)
-                                .listStyle(PlainListStyle())
                             }
+                        }
+                        .navigationBarTitle("")
+                        .navigationBarHidden(true)
+                        .listStyle(PlainListStyle())
                     }
+                }
             }
         }
         .onAppear {
             if !self.firstAppear { return }
             Task {
-                let res = await firestoreManager.checkEnrollment(year: currentYear, month: currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
+                let res = await firestoreManager.checkEnrollment(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userID: loginModel.auth.currentUser?.uid ?? "")
                 if res > 0 {
                     self.isEnrolled = true
-                    await firestoreManager.fetchSeasons(year:currentYear, month:currentMonth, userId: loginModel.auth.currentUser?.uid)
+                    await firestoreManager.fetchSeasons(year: dateViewModel.currentYear, month: dateViewModel.currentMonth, userId: loginModel.auth.currentUser?.uid)
                     self.firstAppear = false
                 } else {
                     self.isEnrolled = false
                     self.firstAppear = false
                 }
             }
-            
-            
         }
         .navigationTitle("")
         .navigationBarHidden(true)

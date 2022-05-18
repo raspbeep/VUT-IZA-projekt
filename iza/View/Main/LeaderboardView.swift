@@ -11,10 +11,16 @@ import SwiftUI
 struct LeaderboardView: View {
     @EnvironmentObject var firestoreManager: FirestoreManager
     @EnvironmentObject var loginModel: LoginViewModel
+    @EnvironmentObject var dateViewModel: DateViewModel
     @Environment(\.dismiss) var dismiss
     
-    var currentYear = "2022"
-    var currentMonth = "April"
+    
+    // for displaying a specific season
+    @State var currentYear: String = ""
+    @State var currentMonth: String = ""
+    @State var showSpecificSeason: Bool = false
+    
+    
     @State var showHeader: Bool = true
     @State var selectedCategory: String = "profi"
     var body: some View {
@@ -27,7 +33,7 @@ struct LeaderboardView: View {
                         
                         Button(action: {
                             Task {
-                                let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                                let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month: currentMonth)
                             }
                         }) {
                             Label("", systemImage: "arrow.clockwise")
@@ -74,7 +80,7 @@ struct LeaderboardView: View {
                     }
                     .refreshable {
                         Task {
-                            let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                            let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month: currentMonth)
                         }
                     }
                     .listStyle(PlainListStyle())
@@ -82,17 +88,15 @@ struct LeaderboardView: View {
             }
         }
         .onAppear {
+            if !self.showSpecificSeason {
+                currentYear = dateViewModel.currentYear
+                currentMonth = dateViewModel.currentMonth
+            }
             Task {
-                let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month:currentMonth)
+                let _ = await firestoreManager.fetchLeaderBoard(year: currentYear, month: currentMonth)
             }
         }
         .navigationTitle("")
         .navigationBarHidden(true)
-    }
-}
-
-struct LeaderboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        LeaderboardView()
     }
 }

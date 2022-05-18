@@ -16,7 +16,7 @@
 		E91120CD281AD2AD005FD9EC /* PersonLeaderboardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */; };
 		E955302F281801E500A876C5 /* PreviousSeasonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955302E281801E500A876C5 /* PreviousSeasonsView.swift */; };
 		E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9553030281801F800A876C5 /* CurrentSeasonView.swift */; };
-		E95530332818023400A876C5 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530322818023400A876C5 /* FavoritesView.swift */; };
+		E95530332818023400A876C5 /* PerformanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530322818023400A876C5 /* PerformanceView.swift */; };
 		E95530352818024B00A876C5 /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530342818024B00A876C5 /* LeaderboardView.swift */; };
 		E95530372818026300A876C5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95530362818026300A876C5 /* SettingsView.swift */; };
 		E955303D281802C500A876C5 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E955303C281802C500A876C5 /* SignInView.swift */; };
@@ -34,6 +34,7 @@
 		E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */; };
 		E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1B12817FDAF00179E8F /* FirebaseStorage */; };
 		E9708EFE281BDBF9001FEF5E /* BoulderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9708EFD281BDBF9001FEF5E /* BoulderDetail.swift */; };
+		E9A126192835281F00539578 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A126182835281F00539578 /* DateViewModel.swift */; };
 		E9C4DD3028210E400005AC1E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E9C4DD2F28210E400005AC1E /* FirebaseFirestoreCombine-Community */; };
 		E9C4DD3228210E400005AC1E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E9C4DD3128210E400005AC1E /* FirebaseFirestoreSwift-Beta */; };
 		E9C4DD3E282180A20005AC1E /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */; };
@@ -55,7 +56,7 @@
 		E91120CC281AD2AD005FD9EC /* PersonLeaderboardDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonLeaderboardDetail.swift; sourceTree = "<group>"; };
 		E955302E281801E500A876C5 /* PreviousSeasonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSeasonsView.swift; sourceTree = "<group>"; };
 		E9553030281801F800A876C5 /* CurrentSeasonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSeasonView.swift; sourceTree = "<group>"; };
-		E95530322818023400A876C5 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		E95530322818023400A876C5 /* PerformanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceView.swift; sourceTree = "<group>"; };
 		E95530342818024B00A876C5 /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		E95530362818026300A876C5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E955303C281802C500A876C5 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		E96CB19A2817FCD700179E8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E9708EFD281BDBF9001FEF5E /* BoulderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoulderDetail.swift; sourceTree = "<group>"; };
+		E9A126182835281F00539578 /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		E9C4DD3F282183BF0005AC1E /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		E9C4DD4128227F9B0005AC1E /* UserScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserScore.swift; sourceTree = "<group>"; };
@@ -113,7 +115,7 @@
 			children = (
 				E955302E281801E500A876C5 /* PreviousSeasonsView.swift */,
 				E9553030281801F800A876C5 /* CurrentSeasonView.swift */,
-				E95530322818023400A876C5 /* FavoritesView.swift */,
+				E95530322818023400A876C5 /* PerformanceView.swift */,
 				E95530342818024B00A876C5 /* LeaderboardView.swift */,
 				E95530362818026300A876C5 /* SettingsView.swift */,
 				E95530402818030900A876C5 /* TabBar.swift */,
@@ -150,6 +152,7 @@
 			children = (
 				E95530432818097900A876C5 /* LoginViewModel.swift */,
 				E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */,
+				E9A126182835281F00539578 /* DateViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -301,13 +304,14 @@
 				E9E84AC528302644002E3934 /* CircleButton.swift in Sources */,
 				E95530372818026300A876C5 /* SettingsView.swift in Sources */,
 				E95530412818030900A876C5 /* TabBar.swift in Sources */,
-				E95530332818023400A876C5 /* FavoritesView.swift in Sources */,
+				E95530332818023400A876C5 /* PerformanceView.swift in Sources */,
 				E96CB1992817FCD700179E8F /* ContentView.swift in Sources */,
 				E9C4DD4228227F9B0005AC1E /* UserScore.swift in Sources */,
 				E9553031281801F800A876C5 /* CurrentSeasonView.swift in Sources */,
 				E91120BF281A91D0005FD9EC /* Enums.swift in Sources */,
 				E95530352818024B00A876C5 /* LeaderboardView.swift in Sources */,
 				E9C4DD3E282180A20005AC1E /* FirestoreManager.swift in Sources */,
+				E9A126192835281F00539578 /* DateViewModel.swift in Sources */,
 				E91120BB281A91A8005FD9EC /* AttemptedBoulder.swift in Sources */,
 				E955303F281802CE00A876C5 /* SignUpView.swift in Sources */,
 				E95530442818097900A876C5 /* LoginViewModel.swift in Sources */,
