@@ -110,5 +110,8 @@ struct CurrentSeasonView: View {
 struct CurrentSeasonViewe_Previews: PreviewProvider {
     static var previews: some View {
         CurrentSeasonView()
+            .environmentObject(FirestoreManager())
+            .environmentObject(DateViewModel())
+            .environmentObject(LoginViewModel())
     }
 }

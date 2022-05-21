@@ -20,13 +20,11 @@ extension Color {
         return Color(decimalRed: 255, green: 204, blue: 203)
     }
     
-    
     public static var lightGreenCard: Color {
         return Color(decimalRed: 210, green: 248, blue: 208)
     }
     
-    public static var flatDarkBackground: Color {
-        return Color(decimalRed: 36, green: 36, blue: 36)
+    public static var lightRedError: Color {
+        return Color(decimalRed: 255, green: 114, blue: 118)
     }
-    
 }

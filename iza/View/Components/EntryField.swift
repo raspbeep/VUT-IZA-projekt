@@ -38,7 +38,8 @@ struct EntryField: View {
                 Text(prompt)
                     .fixedSize(horizontal: false, vertical: true)
                     .font(.caption)
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Color.lightRedError)
+                    .font(.system(size: 10, weight: .semibold))
             }
         }
     }

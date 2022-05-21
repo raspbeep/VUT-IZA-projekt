@@ -10,9 +10,9 @@ import Firebase
 import Foundation
 import Combine
 
-
+// class for handling registration and logging in
 class LoginViewModel: ObservableObject {
-    @Published var errorMessage = ""
+    @Published var errorMessage: String?
     
     @Published var currentUser = User(id: "", uid: "", email: "", firstName: "", lastName: "", nickName: "", dateOfBirth: "", gender: "", category: "")
     @Published var firstName = ""
@@ -43,6 +43,7 @@ class LoginViewModel: ObservableObject {
     
     @State var listOfBoulders = [Boulder]()
     
+    // combine variables used for input validation
     var passwordPrompt: String {
         isPasswordCriteriaValid ? "" : "Must be at least 8 characters."
     }
@@ -85,9 +86,6 @@ class LoginViewModel: ObservableObject {
     let emailPredicate = NSPredicate(format: "SELF MATCHES %@", "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
     
     init() {
-        Task {
-            //await self.fetchCurrentUser()
-        }
         $email
             .map { email in
                 return self.emailPredicate.evaluate(with: email)
@@ -173,15 +171,17 @@ class LoginViewModel: ObservableObject {
     
     func signIn() async {
         do {
+            // attempts to sign in
             let _ = try await auth.signIn(withEmail: email, password: password)
-            
-            //await self.fetchCurrentUser()
-            
+                    
+            // writes the result into a published variable
             DispatchQueue.main.async {
                 self.signedIn = true
             }
             
         } catch {
+            // in case logging in failed, print error description to console
+            // TODO: inform user about the problem
             print("There was an error signing in: \(error.localizedDescription.description)")
             DispatchQueue.main.async {
                 self.errorMessage = error.localizedDescription
@@ -191,14 +191,14 @@ class LoginViewModel: ObservableObject {
     
     func signUp() async {
         do {
+            // attempts to sign up the user using the provided information in registration form
             let _ = try await auth.createUser(withEmail: email, password: password)
-            
-            //await self.fetchCurrentUser()
-            
+                        
             DispatchQueue.main.async {
                 self.signedIn = true
             }
-
+            
+            // write personal information into database
             createUserData()
         
         } catch {
@@ -211,6 +211,7 @@ class LoginViewModel: ObservableObject {
     
     func signOut() {
         do {
+            // signs the user out and resets registration form
             try? auth.signOut()
             self.signedIn = false
             self.password = ""
@@ -218,13 +219,11 @@ class LoginViewModel: ObservableObject {
             self.firstName = ""
             self.lastName = ""
             self.nickName = ""
-            //Task {
-            //    await self.fetchCurrentUser()
-            //}
         }
     }
     
-    
+    // creates a document in collection users
+    // binded to user id provided by auth module in attribute of document
     func createUserData() {
         guard auth.currentUser != nil else {
             return
@@ -234,7 +233,7 @@ class LoginViewModel: ObservableObject {
         let userUID = auth.currentUser?.uid
     
         db.collection("users").document("\(userUID!)").setData([
-            "uid"            : userUID ?? "",
+            "uid"           : userUID ?? "",
             "firstName"     : firstName,
             "lastName"      : lastName,
             "nickName"      : nickName,

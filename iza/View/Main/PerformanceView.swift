@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftUICharts
 
-
 struct PerformanceView: View {
     @EnvironmentObject var loginModel: LoginViewModel
     @EnvironmentObject var firestoreManager: FirestoreManager
@@ -19,6 +18,9 @@ struct PerformanceView: View {
     @State var summary = [MonthScore]()
     @State var barChartData = [(String, Double)]()
     @State var pieChartData = [Double]()
+    
+    @State var hardestGrader: String = ""
+    @State var averageGrade: String = ""
     
     @State var data = [(String, Int)]()
     
@@ -36,9 +38,9 @@ struct PerformanceView: View {
                 VStack {
                     BarChartView(data: ChartData(values: barChartData), title: "Tops each month", form: ChartForm.extraLarge, valueSpecifier: "Number of tops: %.0f")
                         .padding(.bottom, 15)
-                    
-                    Text("Ratio of climbed boulders this month")
-                    PieChartView(data: pieChartData, title: "Ratio of topped boulders this month", form: ChartForm.extraLarge)
+
+                    Text("Top climbed grade: \(hardestGrader)")
+                    Text("Average grade: \(averageGrade)")
                 }
             } else {
                 Spacer()
@@ -56,7 +58,6 @@ struct PerformanceView: View {
                     self.attemptedBoulders = allBoulders
                     self.currentBoulders = currentBoulders
                     self.barChartData = self.generateBarChartData()
-                    self.pieChartData = self.generatePieChartData()
                 }
             }
         }
@@ -66,22 +67,34 @@ struct PerformanceView: View {
     
     func generateSummary() -> [MonthScore] {
         var summary = [MonthScore]()
+        var hardest: Int = 0
+        var average: Int = 0
+        var count: Int = 0
+        var idx: Int
         
         if !attemptedBoulders.isEmpty {
             for attemptedBoulder in attemptedBoulders {
-                if let monthScoreIndex = summary.firstIndex(where: { attemptedBoulder.boulder.month == $0.month }) {
-                    if attemptedBoulder.attempt.topped {
-                        summary[monthScoreIndex].topCount += 1
+                if attemptedBoulder.attempt.topped {
+                    count += 1
+                    idx = grades.firstIndex(where: { $0 == attemptedBoulder.boulder.grade })!
+                    average += idx
+                    if idx > hardest {
+                        hardest = idx
                     }
-                } else {
-                    var newMonthScore = MonthScore(id: UUID(), month: attemptedBoulder.boulder.month, topCount: 0.0)
-                    if attemptedBoulder.attempt.topped {
+                    
+                    if let monthScoreIndex = summary.firstIndex(where: { attemptedBoulder.boulder.month == $0.month }) {
+                            summary[monthScoreIndex].topCount += 1
+                    } else {
+                        var newMonthScore = MonthScore(id: UUID(), month: attemptedBoulder.boulder.month, topCount: 0.0)
                         newMonthScore.topCount += 1
+                        summary.append(newMonthScore)
                     }
-                    summary.append(newMonthScore)
                 }
             }
         }
+        print("count \(count)")
+        print("hardest \(hardest)")
+        print(" average \(average)")
         return summary
     }
     
@@ -91,23 +104,6 @@ struct PerformanceView: View {
             graphData.append((monthScore.month, monthScore.topCount))
         }
         return graphData
-    }
-    
-    func generatePieChartData() -> [Double] {
-        var total: Double = 0.0
-        //var flashed: Int = 0
-        var topped: Double = 0.0
-
-        for score in self.attemptedBoulders {
-            if score.boulder.month == dateViewModel.currentMonth && score.boulder.year == dateViewModel.currentYear {
-                total += 1
-                if score.attempt.topped == true {
-                    topped += 1
-                }
-            }
-        }
-        print([total-topped, topped])
-        return [total-topped, topped]
     }
 }
 

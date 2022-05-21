@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E91120AD281A7421005FD9EC /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = E91120AC281A7421005FD9EC /* Promises */; };
+		E90760C12837952000D3CEC9 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = E90760C02837952000D3CEC9 /* SwiftUICharts */; };
+		E90760C42837957400D3CEC9 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E90760C32837957400D3CEC9 /* FirebaseStorageSwift-Beta */; };
+		E90760C62837969F00D3CEC9 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E90760C52837969F00D3CEC9 /* FirebaseFirestoreSwift-Beta */; };
 		E91120B9281A916B005FD9EC /* Boulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120B8281A916B005FD9EC /* Boulder.swift */; };
 		E91120BB281A91A8005FD9EC /* AttemptedBoulder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120BA281A91A8005FD9EC /* AttemptedBoulder.swift */; };
 		E91120BD281A91BA005FD9EC /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E91120BC281A91BA005FD9EC /* Attempt.swift */; };
@@ -30,20 +32,15 @@
 		E96CB19B2817FCD700179E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96CB19A2817FCD700179E8F /* Assets.xcassets */; };
 		E96CB19E2817FCD700179E8F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E96CB19D2817FCD700179E8F /* Preview Assets.xcassets */; };
 		E96CB1AC2817FDAF00179E8F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AB2817FDAF00179E8F /* FirebaseAuth */; };
-		E96CB1AE2817FDAF00179E8F /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AD2817FDAF00179E8F /* FirebaseDatabase */; };
 		E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */; };
-		E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E96CB1B12817FDAF00179E8F /* FirebaseStorage */; };
 		E9708EFE281BDBF9001FEF5E /* BoulderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9708EFD281BDBF9001FEF5E /* BoulderDetail.swift */; };
 		E9A126192835281F00539578 /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A126182835281F00539578 /* DateViewModel.swift */; };
-		E9C4DD3028210E400005AC1E /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E9C4DD2F28210E400005AC1E /* FirebaseFirestoreCombine-Community */; };
-		E9C4DD3228210E400005AC1E /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = E9C4DD3128210E400005AC1E /* FirebaseFirestoreSwift-Beta */; };
 		E9C4DD3E282180A20005AC1E /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3D282180A20005AC1E /* FirestoreManager.swift */; };
 		E9C4DD40282183BF0005AC1E /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD3F282183BF0005AC1E /* Season.swift */; };
 		E9C4DD4228227F9B0005AC1E /* UserScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C4DD4128227F9B0005AC1E /* UserScore.swift */; };
 		E9CE7B7428186A98003BFFF7 /* BoulderListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7328186A98003BFFF7 /* BoulderListItem.swift */; };
 		E9CE7B7728186E68003BFFF7 /* SmallPillLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7628186E68003BFFF7 /* SmallPillLabel.swift */; };
 		E9CE7B7928187530003BFFF7 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE7B7828187530003BFFF7 /* ColorExtension.swift */; };
-		E9E6AD6B282947800044EA85 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = E9E6AD6A282947800044EA85 /* SwiftUICharts */; };
 		E9E84AC528302644002E3934 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E84AC428302644002E3934 /* CircleButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,13 +83,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E96CB1AE2817FDAF00179E8F /* FirebaseDatabase in Frameworks */,
-				E96CB1B22817FDAF00179E8F /* FirebaseStorage in Frameworks */,
-				E9C4DD3228210E400005AC1E /* FirebaseFirestoreSwift-Beta in Frameworks */,
+				E90760C12837952000D3CEC9 /* SwiftUICharts in Frameworks */,
+				E90760C42837957400D3CEC9 /* FirebaseStorageSwift-Beta in Frameworks */,
+				E90760C62837969F00D3CEC9 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				E96CB1AC2817FDAF00179E8F /* FirebaseAuth in Frameworks */,
-				E9C4DD3028210E400005AC1E /* FirebaseFirestoreCombine-Community in Frameworks */,
-				E9E6AD6B282947800044EA85 /* SwiftUICharts in Frameworks */,
-				E91120AD281A7421005FD9EC /* Promises in Frameworks */,
 				E96CB1B02817FDAF00179E8F /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +94,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E90760C22837957400D3CEC9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E955302C281801C600A876C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +177,7 @@
 				E91120C2281A9A0E005FD9EC /* GoogleService-Info.plist */,
 				E96CB1952817FCD700179E8F /* iza */,
 				E96CB1942817FCD700179E8F /* Products */,
+				E90760C22837957400D3CEC9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,13 +229,10 @@
 			name = iza;
 			packageProductDependencies = (
 				E96CB1AB2817FDAF00179E8F /* FirebaseAuth */,
-				E96CB1AD2817FDAF00179E8F /* FirebaseDatabase */,
 				E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */,
-				E96CB1B12817FDAF00179E8F /* FirebaseStorage */,
-				E91120AC281A7421005FD9EC /* Promises */,
-				E9C4DD2F28210E400005AC1E /* FirebaseFirestoreCombine-Community */,
-				E9C4DD3128210E400005AC1E /* FirebaseFirestoreSwift-Beta */,
-				E9E6AD6A282947800044EA85 /* SwiftUICharts */,
+				E90760C02837952000D3CEC9 /* SwiftUICharts */,
+				E90760C32837957400D3CEC9 /* FirebaseStorageSwift-Beta */,
+				E90760C52837969F00D3CEC9 /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = iza;
 			productReference = E96CB1932817FCD700179E8F /* iza.app */;
@@ -267,7 +266,7 @@
 				E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E91120AB281A7421005FD9EC /* XCRemoteSwiftPackageReference "promises" */,
 				E9C4DD2E28210E400005AC1E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				E9E6AD69282947800044EA85 /* XCRemoteSwiftPackageReference "ChartView" */,
+				E90760BF2837952000D3CEC9 /* XCRemoteSwiftPackageReference "ChartView" */,
 			);
 			productRefGroup = E96CB1942817FCD700179E8F /* Products */;
 			projectDirPath = "";
@@ -525,6 +524,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E90760BF2837952000D3CEC9 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.5;
+			};
+		};
 		E91120AB281A7421005FD9EC /* XCRemoteSwiftPackageReference "promises" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/promises.git";
@@ -549,56 +556,33 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		E9E6AD69282947800044EA85 /* XCRemoteSwiftPackageReference "ChartView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AppPear/ChartView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E91120AC281A7421005FD9EC /* Promises */ = {
+		E90760C02837952000D3CEC9 /* SwiftUICharts */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E91120AB281A7421005FD9EC /* XCRemoteSwiftPackageReference "promises" */;
-			productName = Promises;
+			package = E90760BF2837952000D3CEC9 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+		E90760C32837957400D3CEC9 /* FirebaseStorageSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageSwift-Beta";
+		};
+		E90760C52837969F00D3CEC9 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
 		};
 		E96CB1AB2817FDAF00179E8F /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		E96CB1AD2817FDAF00179E8F /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
-		};
 		E96CB1AF2817FDAF00179E8F /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
-		};
-		E96CB1B12817FDAF00179E8F /* FirebaseStorage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseStorage;
-		};
-		E9C4DD2F28210E400005AC1E /* FirebaseFirestoreCombine-Community */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreCombine-Community";
-		};
-		E9C4DD3128210E400005AC1E /* FirebaseFirestoreSwift-Beta */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E96CB1AA2817FDAF00179E8F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = "FirebaseFirestoreSwift-Beta";
-		};
-		E9E6AD6A282947800044EA85 /* SwiftUICharts */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9E6AD69282947800044EA85 /* XCRemoteSwiftPackageReference "ChartView" */;
-			productName = SwiftUICharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

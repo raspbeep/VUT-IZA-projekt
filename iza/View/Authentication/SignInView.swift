@@ -22,12 +22,20 @@ struct SignInView: View {
                 .clipped()
                 .cornerRadius(150)
                 .padding(.bottom, 30)
-                
-                EntryField(sfSymbolName: "envelope", placeholder: "Email Address", prompt: loginModel.emailPrompt, field: $loginModel.email)
-                EntryField(sfSymbolName: "lock", placeholder: "Password", field: $loginModel.password, isSecure: true)
             
+            
+                
+            EntryField(sfSymbolName: "envelope", placeholder: "Email Address", prompt: loginModel.emailPrompt, field: $loginModel.email)
+            EntryField(sfSymbolName: "lock", placeholder: "Password", field: $loginModel.password, isSecure: true)
+            if let msg = loginModel.errorMessage {
+                Text(msg)
+                    .foregroundColor(Color.red)
+                    .font(.system(size: 10, weight: .semibold))
+            }
+        
             Button(action: {
                 Task {
+                    loginModel.errorMessage = nil
                     await loginModel.signIn()
                 }
                 

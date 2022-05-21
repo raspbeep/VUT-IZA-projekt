@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct SettingsView: View {
     @EnvironmentObject var loginModel: LoginViewModel
     @State var currentUser: User = User(id: "", uid: "", email: "", firstName: "", lastName: "", nickName: "", dateOfBirth: "", gender: "", category: "")
@@ -40,7 +39,7 @@ struct SettingsView: View {
                 Section(header: Text("Category")) {
                     Text(loginModel.currentUser.category)
                 }
-                Section(header: Text("Profile")) {
+                Section(header: Text("User ID")) {
                     Text(loginModel.currentUser.uid)
                 }
                     

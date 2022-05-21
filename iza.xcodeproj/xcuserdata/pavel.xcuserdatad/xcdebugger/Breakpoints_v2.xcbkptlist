@@ -356,5 +356,165 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D46FD079-ED41-41D2-820D-C484068B74AD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iza/ViewModel/FirestoreManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "fetchAttempts(boulderID:userID:forBoulderIDs:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D46FD079-ED41-41D2-820D-C484068B74AD - 5a1510ac225c110c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iza.FirestoreManager.fetchAttempts(boulderID: Swift.Optional&lt;Swift.String&gt;, userID: Swift.Optional&lt;Swift.String&gt;, forBoulderIDs: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;) async throws -&gt; ()"
+                  moduleName = "iza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavel/newiza/iza/iza/ViewModel/FirestoreManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "336">
+               </Location>
+               <Location
+                  uuid = "D46FD079-ED41-41D2-820D-C484068B74AD - 1bbb7f296d3bb03"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for iza.FirestoreManager.fetchAttempts(boulderID: Swift.Optional&lt;Swift.String&gt;, userID: Swift.Optional&lt;Swift.String&gt;, forBoulderIDs: Swift.Optional&lt;Swift.Array&lt;Swift.String&gt;&gt;) async throws -&gt; ()"
+                  moduleName = "iza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavel/newiza/iza/iza/ViewModel/FirestoreManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "35"
+                  endingLineNumber = "35"
+                  offsetFromSymbolStart = "180">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A443F41E-481D-4834-ABD5-7DFF1C5C43F0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iza/ViewModel/FirestoreManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getSeason(year:month:userID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A443F41E-481D-4834-ABD5-7DFF1C5C43F0 - 958b47daa5a25a2a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "iza.FirestoreManager.getSeason(year: Swift.Optional&lt;Swift.String&gt;, month: Swift.Optional&lt;Swift.String&gt;, userID: Swift.Optional&lt;Swift.String&gt;) async -&gt; Swift.Array&lt;iza.AttemptedBoulder&gt;"
+                  moduleName = "iza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavel/newiza/iza/iza/ViewModel/FirestoreManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "A443F41E-481D-4834-ABD5-7DFF1C5C43F0 - 4661b73d31e0d54c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for iza.FirestoreManager.getSeason(year: Swift.Optional&lt;Swift.String&gt;, month: Swift.Optional&lt;Swift.String&gt;, userID: Swift.Optional&lt;Swift.String&gt;) async -&gt; Swift.Array&lt;iza.AttemptedBoulder&gt;"
+                  moduleName = "iza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavel/newiza/iza/iza/ViewModel/FirestoreManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC59980C-D243-4FD9-BDAC-1DDEAA948E19"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iza/ViewModel/FirestoreManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "getSeason(year:month:userID:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DC59980C-D243-4FD9-BDAC-1DDEAA948E19 - 4661b73d31e0d56b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for iza.FirestoreManager.getSeason(year: Swift.Optional&lt;Swift.String&gt;, month: Swift.Optional&lt;Swift.String&gt;, userID: Swift.Optional&lt;Swift.String&gt;) async -&gt; Swift.Array&lt;iza.AttemptedBoulder&gt;"
+                  moduleName = "iza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavel/newiza/iza/iza/ViewModel/FirestoreManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "DC59980C-D243-4FD9-BDAC-1DDEAA948E19 - c5f8cd4f471fb76a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for iza.FirestoreManager.getSeason(year: Swift.Optional&lt;Swift.String&gt;, month: Swift.Optional&lt;Swift.String&gt;, userID: Swift.Optional&lt;Swift.String&gt;) async -&gt; Swift.Array&lt;iza.AttemptedBoulder&gt;"
+                  moduleName = "iza"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/pavel/newiza/iza/iza/ViewModel/FirestoreManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "96">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "13524CB4-C191-4A1D-AC43-9AD3CE911C7D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iza/ViewModel/FirestoreManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "getSeason(year:month:userID:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
