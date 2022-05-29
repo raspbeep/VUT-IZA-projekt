@@ -29,14 +29,3 @@ Počas vývoja som niekoľko krát dával testovať registračný formulár kama
 Po registrácii je užívateľ automaticky prihlásený a može sa zúčastniť aktuálneho kola v sekcii Current pomocou tlačidla Sign Up. To vytvorí dokument v databáze pre každý z aktuálnych bouldrov(v dokumente je uchované id bouldra, id užívateľa, počet topov, počet pokusov). Po kliknutí na položku listu môže užívateľ postupne zaznamenávať progress na danej ceste. Po návrate je informácia automaticky uložená do DB. 
 
 V sekcii Podium je rebríček súťažiacich v aktuálnom kole podľa vyššie uvedených metrík. V sekcii Previous môžme nájsť rebríčky zo predošlých kôl. Nakoniec, v sekcii Performance nájdeme grafy s metrikami pre jednotlivé mesiace. Tieto údaje budú užitočné až po niekoľkých mesiacoch používanie aplikácie, preto som vytvoril demo užívateľa pre plné zobrazenie grafov(DEMO USER \\TODO).
- 
-
-
-
-
-
-
-
-
-
-
